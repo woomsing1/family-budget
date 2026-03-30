@@ -277,18 +277,16 @@
       </div>
     </div>
     <!-- Right: Donut chart -->
-    <div class="chart-card" style="display:flex;flex-direction:column;justify-content:center">
-      <div class="chart-title">카테고리별 지출</div>
-      <div style="display:flex;gap:20px;align-items:center">
-        <div style="position:relative;width:160px;height:160px;flex-shrink:0">
-          <canvas id="d-donut" width="160" height="160"></canvas>
-          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center">
-            <div style="font-size:11px;color:var(--muted)">총 지출</div>
-            <div id="d-donut-total" style="font-size:14px;font-weight:600;color:var(--text)">$0</div>
-          </div>
+    <div class="chart-card" style="display:flex;flex-direction:column;align-items:center">
+      <div class="chart-title" style="align-self:flex-start">카테고리별 지출</div>
+      <div style="position:relative;width:220px;height:220px;margin:8px auto 16px">
+        <canvas id="d-donut" width="220" height="220"></canvas>
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:2px">총 지출</div>
+          <div id="d-donut-total" style="font-size:18px;font-weight:700;color:var(--text);letter-spacing:-0.5px">$0</div>
         </div>
-        <div id="d-donut-legend" style="flex:1;display:flex;flex-direction:column;gap:6px"></div>
       </div>
+      <div id="d-donut-legend" style="width:100%;display:grid;grid-template-columns:1fr 1fr;gap:6px 12px"></div>
     </div>
   </div>
 
@@ -426,18 +424,16 @@
     </div>
     <!-- Donut + Bar chart side by side -->
     <div class="report-grid" style="margin-bottom:20px">
-      <div class="chart-card">
-        <div class="chart-title">카테고리별 지출 (도넛)</div>
-        <div style="display:flex;gap:20px;align-items:center">
-          <div style="position:relative;width:150px;height:150px;flex-shrink:0">
-            <canvas id="r-donut" width="150" height="150"></canvas>
-            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center">
-              <div style="font-size:10px;color:var(--muted)">총 지출</div>
-              <div id="r-donut-total" style="font-size:13px;font-weight:600;color:var(--text)">$0</div>
-            </div>
+      <div class="chart-card" style="display:flex;flex-direction:column;align-items:center">
+        <div class="chart-title" style="align-self:flex-start">카테고리별 지출 (도넛)</div>
+        <div style="position:relative;width:200px;height:200px;margin:8px auto 16px">
+          <canvas id="r-donut" width="200" height="200"></canvas>
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:2px">총 지출</div>
+            <div id="r-donut-total" style="font-size:16px;font-weight:700;color:var(--text);letter-spacing:-0.5px">$0</div>
           </div>
-          <div id="r-donut-legend" style="flex:1;display:flex;flex-direction:column;gap:5px"></div>
         </div>
+        <div id="r-donut-legend" style="width:100%;display:grid;grid-template-columns:1fr 1fr;gap:6px 12px"></div>
       </div>
       <div class="chart-card"><div class="chart-title">카테고리별 지출 (전월 대비)</div><div class="bar-chart" id="cat-chart"></div></div>
     </div>
@@ -720,38 +716,48 @@ function drawDonut(canvasId, segments, total) {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
   const W = canvas.width, H = canvas.height;
-  const cx = W/2, cy = H/2, r = Math.min(W,H)/2 - 8, ir = r * 0.58;
+  // Scale canvas for retina sharpness
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  ctx.scale(dpr, dpr);
+  const cx = W/2, cy = H/2, r = Math.min(W,H)/2 - 6, ir = r * 0.55;
   ctx.clearRect(0, 0, W, H);
   if (!total || segments.length === 0) {
     ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2);
-    ctx.strokeStyle = '#2e2e2e'; ctx.lineWidth = r - ir; ctx.stroke();
+    ctx.strokeStyle = '#333'; ctx.lineWidth = r - ir; ctx.stroke();
     return;
   }
   let angle = -Math.PI / 2;
-  segments.forEach(seg => {
+  segments.forEach((seg, i) => {
     const slice = (seg.value / total) * Math.PI * 2;
-    ctx.beginPath(); ctx.moveTo(cx, cy);
-    ctx.arc(cx, cy, r, angle, angle + slice);
-    ctx.closePath(); ctx.fillStyle = seg.color; ctx.fill();
-    // inner circle cutout
-    ctx.beginPath(); ctx.arc(cx, cy, ir, 0, Math.PI*2);
-    ctx.fillStyle = '#1a1a1a'; ctx.fill();
+    // Draw segment with small gap
+    const gap = 0.015;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, angle + gap, angle + slice - gap);
+    ctx.arc(cx, cy, ir, angle + slice - gap, angle + gap, true);
+    ctx.closePath();
+    ctx.fillStyle = seg.color;
+    ctx.fill();
     angle += slice;
   });
+  // Inner bg circle
+  ctx.beginPath(); ctx.arc(cx, cy, ir - 1, 0, Math.PI*2);
+  ctx.fillStyle = '#1a1a1a'; ctx.fill();
 }
 
 function getDonutSegments(netBycat, cats) {
   const incomeKeys = new Set(cats.filter(c=>c.type==='income').map(c=>c.key));
   const entries = Object.entries(netBycat)
-    .filter(([,v]) => v < 0 && !incomeKeys.has(''))
+    .filter(([,v]) => v < 0)
     .map(([k,v]) => ({ key:k, value:Math.abs(v), color: getCat(k).color, label: getCat(k).label }))
     .sort((a,b) => b.value - a.value);
 
   if (entries.length <= 5) return entries;
   const top5 = entries.slice(0, 5);
   const otherVal = entries.slice(5).reduce((s,e) => s+e.value, 0);
-  if (otherVal > 0) top5.push({ key:'other_combined', value:otherVal, color:'#555', label:'기타' });
+  if (otherVal > 0) top5.push({ key:'other_combined', value:otherVal, color:'#444', label:'기타' });
   return top5;
 }
 
@@ -759,15 +765,21 @@ function renderDonut(canvasId, legendId, totalId, netBycat, cats) {
   const segments = getDonutSegments(netBycat, cats);
   const total = segments.reduce((s,e) => s+e.value, 0);
   drawDonut(canvasId, segments, total);
-  document.getElementById(totalId).textContent = fmt(total);
+  const totalEl = document.getElementById(totalId);
+  if (totalEl) totalEl.textContent = fmt(total);
   const legend = document.getElementById(legendId);
   if (!legend) return;
   legend.innerHTML = segments.map(s => {
     const pct = total > 0 ? Math.round(s.value/total*100) : 0;
-    return `<div style="display:flex;align-items:center;gap:6px">
-      <div style="width:8px;height:8px;border-radius:50%;background:${s.color};flex-shrink:0"></div>
-      <div style="font-size:11px;color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${s.label}</div>
-      <div style="font-size:11px;color:var(--text);font-weight:500">${pct}%</div>
+    return `<div style="display:flex;align-items:center;gap:6px;padding:6px 8px;background:var(--surface2);border-radius:8px;min-width:0">
+      <div style="width:10px;height:10px;border-radius:3px;background:${s.color};flex-shrink:0"></div>
+      <div style="min-width:0;flex:1">
+        <div style="font-size:11px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${s.label}</div>
+        <div style="display:flex;align-items:baseline;gap:4px;margin-top:1px">
+          <span style="font-size:13px;font-weight:600;color:var(--text)">${pct}%</span>
+          <span style="font-size:10px;color:var(--muted)">${fmt(s.value)}</span>
+        </div>
+      </div>
     </div>`;
   }).join('');
 }
