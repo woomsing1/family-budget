@@ -648,16 +648,21 @@ function renderDashboard() {
     : taxded;
   const yearTaxTotal = yearTaxded.reduce((s,t) => s + Math.abs(t.amount), 0);
 
+  const expCount = data.filter(t => t.amount < 0 && !incomeKeys.has(t.category)).length;
   document.getElementById('d-income').textContent = fmt(totalInc);
-  document.getElementById('d-expense').textContent = fmt(-totalExp);
+  document.getElementById('d-expense').textContent = fmt(totalExp);
   document.getElementById('d-balance').textContent = fmt(totalInc - totalExp);
   document.getElementById('d-income-sub').textContent = `${incomes.length}건`;
-  document.getElementById('d-expense-sub').textContent = `${expenses.length}건`;
+  document.getElementById('d-expense-sub').textContent = `${expCount}건`;
   document.getElementById('d-taxded').textContent = fmt(yearTaxTotal);
   document.getElementById('d-taxded-sub').textContent = `${currentDate.getFullYear()}년 누적`;
 
-  const recent = [...data].sort((a,b) => b.date.localeCompare(a.date)).slice(0,10);
+  const recent = [...data].filter(t=>t.date).sort((a,b) => (b.date||'').localeCompare(a.date||'')).slice(0,10);
   const tbody = document.getElementById('recent-tbody');
+  if (!data.length) {
+    tbody.innerHTML = `<tr><td colspan="5"><div class="empty"><div class="empty-icon">📂</div><div class="empty-text">데이터가 없어요. CSV를 가져와보세요!</div></div></td></tr>`;
+    return;
+  }
   if (!recent.length) {
     tbody.innerHTML = `<tr><td colspan="5"><div class="empty"><div class="empty-icon">📂</div><div class="empty-text">데이터가 없어요. CSV를 가져와보세요!</div></div></td></tr>`;
     return;
@@ -1161,7 +1166,7 @@ function renderAnnualReport() {
   const totalTax = taxded.reduce((s,t)=>s+Math.abs(t.amount),0);
 
   document.getElementById('a-income').textContent=fmt(totalInc);
-  document.getElementById('a-expense').textContent=fmt(-totalExp);
+  document.getElementById('a-expense').textContent=fmt(totalExp);
   document.getElementById('a-balance').textContent=fmt(totalInc-totalExp);
   document.getElementById('a-taxded').textContent=fmt(totalTax);
 
