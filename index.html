@@ -434,10 +434,14 @@
 
   <div class="settings-section">
     <div class="settings-title">데이터 관리</div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <button class="btn btn-secondary btn-sm" onclick="exportAllData()">전체 데이터 백업</button>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">브라우저 캐시가 지워져도 백업 파일로 복구할 수 있어요. 한 달에 한 번 정도 백업 추천!</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+      <button class="btn btn-primary btn-sm" onclick="exportAllData()">💾 전체 데이터 백업</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('restoreFile').click()">📂 백업에서 복구</button>
+      <input type="file" id="restoreFile" accept=".json" style="display:none" onchange="restoreData(event)">
       <button class="btn btn-danger btn-sm" onclick="clearAllData()">전체 데이터 삭제</button>
     </div>
+    <div id="restoreStatus" style="display:none;background:rgba(96,240,168,0.08);border:1px solid rgba(96,240,168,0.3);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--safe)"></div>
   </div>
 </div>
 
@@ -1264,11 +1268,54 @@ function exportAllData() {
 
 function clearAllData() {
   if (!confirm('모든 데이터를 삭제할까요? 되돌릴 수 없어요.')) return;
-  const keep = ['categories','banks','budgets'];
   const keys = [];
   for (let i=0;i<localStorage.length;i++) keys.push(localStorage.key(i));
   keys.filter(k=>k.startsWith('budget_')).forEach(k=>localStorage.removeItem(k));
   refreshAll(); showToast('데이터 삭제됐어요');
+}
+
+function restoreData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      const keys = Object.keys(data);
+      const budgetKeys = keys.filter(k => k.startsWith('budget_'));
+      const otherKeys = keys.filter(k => ['categories','banks','budgets','learnedCats'].includes(k));
+
+      if (budgetKeys.length === 0 && otherKeys.length === 0) {
+        showToast('올바른 백업 파일이 아니에요', 'error');
+        return;
+      }
+
+      let restored = 0;
+      [...budgetKeys, ...otherKeys].forEach(k => {
+        localStorage.setItem(k, data[k]);
+        restored++;
+      });
+
+      const status = document.getElementById('restoreStatus');
+      status.style.display = 'block';
+
+      // Count transactions
+      const txCount = budgetKeys.reduce((sum, k) => {
+        try { return sum + JSON.parse(data[k]).length; } catch(e) { return sum; }
+      }, 0);
+      const months = budgetKeys.length;
+
+      status.innerHTML = `✓ 복구 완료! <strong>${months}개월</strong> 데이터, 총 <strong>${txCount}건</strong> 거래내역이 복구됐어요.`;
+      setTimeout(() => { status.style.display = 'none'; }, 5000);
+
+      refreshAll();
+      showToast('✓ 데이터 복구 완료!');
+    } catch(err) {
+      showToast('파일을 읽을 수 없어요. 올바른 백업 파일인지 확인하세요', 'error');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = ''; // reset so same file can be re-selected
 }
 
 // ============================================================
