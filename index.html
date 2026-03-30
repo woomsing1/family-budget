@@ -186,6 +186,17 @@
   /* DIVIDER */
   .divider { height:1px; background:var(--border); margin:20px 0; }
 
+  /* ACCORDION */
+  .accordion-section { background:var(--surface); border:1px solid var(--border); border-radius:16px; margin-bottom:12px; overflow:hidden; }
+  .accordion-header { display:flex; align-items:center; justify-content:space-between; padding:18px 24px; cursor:pointer; user-select:none; transition:background 0.2s; }
+  .accordion-header:hover { background:var(--surface2); }
+  .accordion-title { font-size:14px; font-weight:600; color:var(--text); }
+  .accordion-desc { font-size:12px; color:var(--muted); margin-top:2px; }
+  .accordion-arrow { font-size:14px; color:var(--muted); transition:transform 0.25s; flex-shrink:0; }
+  .accordion-arrow.open { transform:rotate(180deg); }
+  .accordion-body { display:none; padding:0 24px 20px; border-top:1px solid var(--border); }
+  .accordion-body.open { display:block; }
+
   /* MONITORING CARDS */
   .monitor-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
   .monitor-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px; }
@@ -244,6 +255,7 @@
   <div class="tab" data-tab="budget" onclick="showTab('budget',this)">예산</div>
   <div class="tab" data-tab="report" onclick="showTab('report',this)">리포트</div>
   <div class="tab" data-tab="settings" onclick="showTab('settings',this)">설정</div>
+  <div class="tab" data-tab="patchnotes" onclick="showTab('patchnotes',this)">패치노트</div>
 </div>
 
 <main>
@@ -471,63 +483,249 @@
 
 <!-- SETTINGS -->
 <div id="tab-settings" class="tab-content">
-  <div class="settings-section">
-    <div class="settings-title">카테고리 관리</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">카테고리 추가/삭제, 세금공제 항목 지정 (헌금, 의료비 등)</div>
-    <div id="cat-list"></div>
-    <div class="divider"></div>
-    <div style="font-size:13px;font-weight:500;margin-bottom:10px">새 카테고리 추가</div>
-    <div class="add-row">
-      <input type="text" id="new-cat-name" placeholder="카테고리 이름 (예: 헌금)" style="flex:1;min-width:140px">
-      <select id="new-cat-type">
-        <option value="expense">지출</option>
-        <option value="income">수입</option>
-        <option value="taxded">세금공제 (지출)</option>
-      </select>
-      <input type="text" id="new-cat-color" placeholder="#색상코드" value="#a78bfa" style="width:110px">
-      <button class="btn btn-primary btn-sm" onclick="addCategory()">추가</button>
+
+  <div class="accordion-section">
+    <div class="accordion-header" onclick="toggleAccordion('acc-cat')">
+      <div>
+        <div class="accordion-title">카테고리 관리</div>
+        <div class="accordion-desc">카테고리 추가/삭제, 세금공제 항목 지정</div>
+      </div>
+      <span class="accordion-arrow" id="arr-acc-cat">▼</span>
+    </div>
+    <div class="accordion-body" id="acc-cat">
+      <div style="padding-top:16px">
+        <div id="cat-list"></div>
+        <div class="divider"></div>
+        <div style="font-size:13px;font-weight:500;margin-bottom:10px">새 카테고리 추가</div>
+        <div class="add-row">
+          <input type="text" id="new-cat-name" placeholder="카테고리 이름 (예: 헌금)" style="flex:1;min-width:140px">
+          <select id="new-cat-type">
+            <option value="expense">지출</option>
+            <option value="income">수입</option>
+            <option value="taxded">세금공제 (지출)</option>
+          </select>
+          <input type="text" id="new-cat-color" placeholder="#색상코드" value="#a78bfa" style="width:110px">
+          <button class="btn btn-primary btn-sm" onclick="addCategory()">추가</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="settings-section">
-    <div class="settings-title">은행 / 카드 관리</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">새 은행이나 카드를 추가하면 CSV 가져오기에 자동으로 나타나요</div>
-    <div id="bank-list"></div>
-    <div class="divider"></div>
-    <div style="font-size:13px;font-weight:500;margin-bottom:10px">새 은행 / 카드 추가</div>
-    <div class="add-row">
-      <input type="text" id="new-bank-name" placeholder="은행/카드 이름 (예: Amex Blue)" style="flex:1;min-width:160px">
-      <select id="new-bank-noheader">
-        <option value="false">헤더 있음 (일반)</option>
-        <option value="true">헤더 없음 (Wells Fargo 스타일)</option>
-      </select>
-      <button class="btn btn-primary btn-sm" onclick="addBank()">추가</button>
+  <div class="accordion-section">
+    <div class="accordion-header" onclick="toggleAccordion('acc-bank')">
+      <div>
+        <div class="accordion-title">은행 / 카드 관리</div>
+        <div class="accordion-desc">새 은행이나 카드 추가, CSV 형식 설정</div>
+      </div>
+      <span class="accordion-arrow" id="arr-acc-bank">▼</span>
+    </div>
+    <div class="accordion-body" id="acc-bank">
+      <div style="padding-top:16px">
+        <div id="bank-list"></div>
+        <div class="divider"></div>
+        <div style="font-size:13px;font-weight:500;margin-bottom:10px">새 은행 / 카드 추가</div>
+        <div class="add-row">
+          <input type="text" id="new-bank-name" placeholder="은행/카드 이름 (예: Amex Blue)" style="flex:1;min-width:160px">
+          <select id="new-bank-noheader">
+            <option value="false">헤더 있음 (일반)</option>
+            <option value="true">헤더 없음 (Wells Fargo 스타일)</option>
+          </select>
+          <button class="btn btn-primary btn-sm" onclick="addBank()">추가</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="settings-section">
-    <div class="settings-title">주요 모니터링 카테고리</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">대시보드에 전월 대비 비교와 예산 달성률을 표시할 카테고리를 선택하세요 (최대 4개)</div>
-    <div id="monitoring-list"></div>
-    <div class="divider"></div>
-    <div style="font-size:13px;font-weight:500;margin-bottom:10px">카테고리 추가</div>
-    <div class="add-row">
-      <select id="new-monitor-cat" style="flex:1"></select>
-      <button class="btn btn-primary btn-sm" onclick="addMonitorCat()">추가</button>
+  <div class="accordion-section">
+    <div class="accordion-header" onclick="toggleAccordion('acc-monitor')">
+      <div>
+        <div class="accordion-title">주요 모니터링 카테고리</div>
+        <div class="accordion-desc">대시보드 전월 대비 비교 및 예산 달성률 (최대 4개)</div>
+      </div>
+      <span class="accordion-arrow" id="arr-acc-monitor">▼</span>
+    </div>
+    <div class="accordion-body" id="acc-monitor">
+      <div style="padding-top:16px">
+        <div id="monitoring-list"></div>
+        <div class="divider"></div>
+        <div style="font-size:13px;font-weight:500;margin-bottom:10px">카테고리 추가</div>
+        <div class="add-row">
+          <select id="new-monitor-cat" style="flex:1"></select>
+          <button class="btn btn-primary btn-sm" onclick="addMonitorCat()">추가</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="settings-section">
-    <div class="settings-title">데이터 관리</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">브라우저 캐시가 지워져도 백업 파일로 복구할 수 있어요. 한 달에 한 번 정도 백업 추천!</div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
-      <button class="btn btn-primary btn-sm" onclick="exportAllData()">💾 전체 데이터 백업</button>
-      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('restoreFile').click()">📂 백업에서 복구</button>
-      <input type="file" id="restoreFile" accept=".json" style="display:none" onchange="restoreData(event)">
-      <button class="btn btn-danger btn-sm" onclick="clearAllData()">전체 데이터 삭제</button>
+  <div class="accordion-section">
+    <div class="accordion-header" onclick="toggleAccordion('acc-data')">
+      <div>
+        <div class="accordion-title">데이터 관리</div>
+        <div class="accordion-desc">백업, 복구, 전체 삭제</div>
+      </div>
+      <span class="accordion-arrow" id="arr-acc-data">▼</span>
     </div>
-    <div id="restoreStatus" style="display:none;background:rgba(96,240,168,0.08);border:1px solid rgba(96,240,168,0.3);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--safe)"></div>
+    <div class="accordion-body" id="acc-data">
+      <div style="padding-top:16px">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:14px">브라우저 캐시가 지워져도 백업 파일로 복구할 수 있어요. 한 달에 한 번 정도 백업 추천!</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+          <button class="btn btn-primary btn-sm" onclick="exportAllData()">💾 전체 데이터 백업</button>
+          <button class="btn btn-secondary btn-sm" onclick="document.getElementById('restoreFile').click()">📂 백업에서 복구</button>
+          <input type="file" id="restoreFile" accept=".json" style="display:none" onchange="restoreData(event)">
+          <button class="btn btn-danger btn-sm" onclick="clearAllData()">전체 데이터 삭제</button>
+        </div>
+        <div id="restoreStatus" style="display:none;background:rgba(96,240,168,0.08);border:1px solid rgba(96,240,168,0.3);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--safe)"></div>
+      </div>
+    </div>
   </div>
+
+</div>
+
+<!-- PATCH NOTES -->
+<div id="tab-patchnotes" class="tab-content">
+  <div class="section-header">
+    <div class="section-title">패치노트</div>
+  </div>
+
+  <div class="accordion-section">
+    <div class="accordion-header" onclick="toggleAccordion('pn-v16')">
+      <div>
+        <div class="accordion-title">v1.6 — 대시보드 & 리포트 개선</div>
+        <div class="accordion-desc">도넛 차트, 모니터링 카드, 전월 대비 증감</div>
+      </div>
+      <span class="accordion-arrow" id="arr-pn-v16">▼</span>
+    </div>
+    <div class="accordion-body" id="pn-v16">
+      <div style="padding-top:16px;font-size:13px;color:var(--muted);line-height:1.9">
+        <div style="color:var(--text);font-weight:500;margin-bottom:8px">대시보드 레이아웃 개편</div>
+        수입 / 지출 / 잔액 / 세금공제 세로 스택 + 옆에 도넛 차트 배치.<br>
+        도넛 차트 — Top 5 카테고리 + 기타, 중앙에 총 지출 금액 표시.<br>
+        레전드 아래 2열 그리드로 카테고리별 % + 금액 표시. Retina 선명도 개선.<br><br>
+        <div style="color:var(--text);font-weight:500;margin-bottom:8px">주요 모니터링 카테고리 카드</div>
+        대시보드에 전월 vs 이번달 바 비교 카드 추가.<br>
+        증가 ▲ 빨강 / 감소 ▼ 초록 배지로 직관적 표시.<br>
+        예산 달성률 바 표시. 설정에서 카테고리 추가/삭제 (최대 4개).<br><br>
+        <div style="color:var(--text);font-weight:500;margin-bottom:8px">리포트 개선</div>
+        도넛 차트 + 전월 대비 바 차트 나란히 배치.<br>
+        각 카테고리 옆에 전월 대비 증감 % 실시간 표시.
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-section">
+    <div class="accordion-header" onclick="toggleAccordion('pn-v15')">
+      <div>
+        <div class="accordion-title">v1.5 — 데이터 백업 & 복구</div>
+        <div class="accordion-desc">브라우저 캐시 삭제 대비 백업/복구 기능</div>
+      </div>
+      <span class="accordion-arrow" id="arr-pn-v15">▼</span>
+    </div>
+    <div class="accordion-body" id="pn-v15">
+      <div style="padding-top:16px;font-size:13px;color:var(--muted);line-height:1.9">
+        전체 데이터 JSON 백업 기능 추가.<br>
+        백업 파일로 복구 기능 추가 — 브라우저 캐시 삭제나 기기 변경 시 대비.<br>
+        복구 완료 시 몇 개월치 / 몇 건 복구됐는지 결과 표시.
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-section">
+    <div class="accordion-header" onclick="toggleAccordion('pn-v14')">
+      <div>
+        <div class="accordion-title">v1.4 — 순지출 계산 (환급 처리)</div>
+        <div class="accordion-desc">Zelle/Venmo 환급을 카테고리 순지출로 차감</div>
+      </div>
+      <span class="accordion-arrow" id="arr-pn-v14">▼</span>
+    </div>
+    <div class="accordion-body" id="pn-v14">
+      <div style="padding-top:16px;font-size:13px;color:var(--muted);line-height:1.9">
+        친구에게 받은 Zelle/Venmo를 해당 카테고리에서 차감하는 순지출 계산 추가.<br>
+        예: 저녁 -$200, 친구 환급 +$150 → 외식 순지출 $50으로 표시.<br>
+        대시보드 / 예산 / 리포트 전부 순지출 기준으로 통일.<br>
+        예산 카드에 환급 금액 초록색으로 별도 표시.
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-section">
+    <div class="accordion-header" onclick="toggleAccordion('pn-v13')">
+      <div>
+        <div class="accordion-title">v1.3 — CSV 가져오기 개선</div>
+        <div class="accordion-desc">미리보기 수정, 카테고리 학습, CC 페이먼트 감지</div>
+      </div>
+      <span class="accordion-arrow" id="arr-pn-v13">▼</span>
+    </div>
+    <div class="accordion-body" id="pn-v13">
+      <div style="padding-top:16px;font-size:13px;color:var(--muted);line-height:1.9">
+        가져오기 전 미리보기에서 카테고리 직접 수정 가능.<br>
+        카테고리 학습 기능 — 한 번 수정하면 다음 가져오기에서 자동 분류 (예: Canva → 구독 서비스).<br>
+        크레딧 카드 페이먼트 자동 감지 및 Skip 권고.<br>
+        Skip 버튼으로 원하지 않는 항목 제외 후 저장.<br>
+        월별로 데이터 자동 분류 저장.
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-section">
+    <div class="accordion-header" onclick="toggleAccordion('pn-v12')">
+      <div>
+        <div class="accordion-title">v1.2 — 연간 보기 & 세금보고</div>
+        <div class="accordion-desc">연간 리포트, 세금공제 항목 상세, 연간 내보내기</div>
+      </div>
+      <span class="accordion-arrow" id="arr-pn-v12">▼</span>
+    </div>
+    <div class="accordion-body" id="pn-v12">
+      <div style="padding-top:16px;font-size:13px;color:var(--muted);line-height:1.9">
+        헤더에 월별 / 연간 토글 추가.<br>
+        연간 리포트 — 12개월 지출 추이, 카테고리별 연간 합계.<br>
+        세금공제 항목 상세 테이블 (헌금, 의료비 등 연간 합계).<br>
+        세금보고용 CSV 별도 내보내기.<br>
+        대시보드에 세금공제 연간 누적 카드 추가.
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-section">
+    <div class="accordion-header" onclick="toggleAccordion('pn-v11')">
+      <div>
+        <div class="accordion-title">v1.1 — 카테고리 & 은행 관리</div>
+        <div class="accordion-desc">커스텀 카테고리, 은행 추가, CSV 헤더 자동 감지</div>
+      </div>
+      <span class="accordion-arrow" id="arr-pn-v11">▼</span>
+    </div>
+    <div class="accordion-body" id="pn-v11">
+      <div style="padding-top:16px;font-size:13px;color:var(--muted);line-height:1.9">
+        설정 탭에서 커스텀 카테고리 추가/삭제.<br>
+        카테고리 타입 지정 — 지출 / 수입 / 세금공제.<br>
+        헌금 카테고리 기본 추가 (세금공제 타입).<br>
+        새 은행/카드 직접 추가 가능 (Amex, Capital One 등).<br>
+        은행별 헤더 자동 감지 방식으로 CSV 파싱 개선.<br>
+        Wells Fargo 헤더 없는 형식 별도 처리.
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-section">
+    <div class="accordion-header" onclick="toggleAccordion('pn-v10')">
+      <div>
+        <div class="accordion-title">v1.0 — 초기 출시</div>
+        <div class="accordion-desc">가계부 첫 번째 버전</div>
+      </div>
+      <span class="accordion-arrow" id="arr-pn-v10">▼</span>
+    </div>
+    <div class="accordion-body" id="pn-v10">
+      <div style="padding-top:16px;font-size:13px;color:var(--muted);line-height:1.9">
+        Chase, Citi, BofA, Wells Fargo CSV 가져오기.<br>
+        카테고리 자동 분류 (300+ 키워드).<br>
+        나 / 와이프 / 공동 거래 구분.<br>
+        월별 예산 설정 및 초과 알림.<br>
+        카테고리별 / 인별 / 주간 지출 차트.<br>
+        CSV 내보내기.<br>
+        Vercel 무료 호스팅 배포.
+      </div>
+    </div>
+  </div>
+
 </div>
 
 </main>
@@ -668,6 +866,15 @@ function showTab(name, el) {
   if (name === 'transactions') renderTransactions();
   if (name === 'dashboard')    renderDashboard();
   if (name === 'settings')     renderSettings();
+}
+
+function toggleAccordion(id) {
+  const body = document.getElementById(id);
+  const arrow = document.getElementById('arr-' + id);
+  if (!body) return;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  if (arrow) arrow.classList.toggle('open', !isOpen);
 }
 
 // ============================================================
