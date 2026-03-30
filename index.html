@@ -1,98 +1,1327 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.4">
-  <style type="text/css">
-    body {background-color: #0d0d0d}
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 22.0px 'Apple SD Gothic Neo'; color: #ece9e2; -webkit-text-stroke: #ece9e2}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px 'Apple SD Gothic Neo'; color: #ece9e2; -webkit-text-stroke: #000000; background-color: #bef14e}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px 'Apple SD Gothic Neo'; color: #757575; -webkit-text-stroke: #757575}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #ece9e2; -webkit-text-stroke: #ece9e2; background-color: #1b1b1b; min-height: 16.0px}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 15.0px 'Helvetica Neue'; color: #ece9e2; -webkit-text-stroke: #ece9e2}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 14.0px 'Helvetica Neue'; color: #ece9e2; -webkit-text-stroke: #ece9e2; min-height: 17.0px}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Apple SD Gothic Neo'; color: #bef14e; -webkit-text-stroke: #bef14e}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Apple SD Gothic Neo'; color: #757575; -webkit-text-stroke: #757575}
-    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #757575; -webkit-text-stroke: #757575}
-    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Apple SD Gothic Neo'; color: #757575; -webkit-text-stroke: #757575}
-    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 28.0px 'Helvetica Neue'; color: #55f198; -webkit-text-stroke: #55f198}
-    p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 28.0px 'Helvetica Neue'; color: #fc4148; -webkit-text-stroke: #fc4148}
-    p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 28.0px 'Helvetica Neue'; color: #bef14e; -webkit-text-stroke: #bef14e}
-    p.p14 {margin: 0.0px 0.0px 0.0px 0.0px; font: 28.0px 'Helvetica Neue'; color: #ebb44e; -webkit-text-stroke: #ebb44e}
-    p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 20.0px 'Apple SD Gothic Neo'; color: #ece9e2; -webkit-text-stroke: #ece9e2}
-    p.p16 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px 'Apple SD Gothic Neo'; color: #ece9e2; -webkit-text-stroke: #ece9e2; background-color: #1b1b1b}
-    p.p17 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 11.0px 'Apple SD Gothic Neo'; color: #757575; -webkit-text-stroke: #757575}
-    p.p18 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #ece9e2; -webkit-text-stroke: #ece9e2; min-height: 15.0px}
-    span.s1 {font-kerning: none; background-color: #0d0d0d}
-    span.s2 {font: 22.0px 'Helvetica Neue'; font-kerning: none; background-color: #0d0d0d}
-    span.s3 {font-kerning: none; color: #bef14e; background-color: #0d0d0d; -webkit-text-stroke: 0px #bef14e}
-    span.s4 {font-kerning: none}
-    span.s5 {font-kerning: none; background-color: #1b1b1b}
-    span.s6 {font: 12.0px 'Apple SD Gothic Neo'; font-kerning: none}
-    span.s7 {font-kerning: none; background-color: #141414}
-    span.s8 {font: 12.0px 'Apple SD Gothic Neo'; font-kerning: none; background-color: #141414}
-    span.s9 {font: 12.0px 'Helvetica Neue'; font-kerning: none; background-color: #141414}
-    span.s10 {font: 11.0px 'Helvetica Neue'; font-kerning: none; background-color: #141414}
-    span.s11 {font: 20.0px 'Helvetica Neue'; font-kerning: none}
-    span.s12 {font: 12.0px 'Helvetica Neue'; font-kerning: none}
-    table.t1 {border-collapse: collapse}
-    td.td1 {width: 133.8px; background-color: #1b1b1b; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: #757575 #757575 #232323 #757575; padding: 14.0px 18.0px 14.0px 18.0px}
-    td.td2 {width: 183.1px; background-color: #1b1b1b; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: #757575 #757575 #232323 #757575; padding: 14.0px 18.0px 14.0px 18.0px}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>우리 가계부</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f0f; --surface: #1a1a1a; --surface2: #242424; --border: #2e2e2e;
+    --accent: #c8f060; --accent2: #60d4f0; --accent3: #f060a8;
+    --text: #f0ede8; --muted: #888; --danger: #ff5a5a; --safe: #60f0a8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:300; min-height:100vh; overflow-x:hidden; }
+
+  /* HEADER */
+  header { padding:24px 40px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; background:var(--bg); z-index:100; }
+  .logo { font-family:'DM Serif Display',serif; font-size:22px; letter-spacing:-0.5px; }
+  .logo span { color:var(--accent); }
+  .header-right { display:flex; align-items:center; gap:20px; }
+  .year-select { background:var(--surface2); border:1px solid var(--border); border-radius:8px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:13px; padding:6px 12px; cursor:pointer; }
+  .month-nav { display:flex; align-items:center; gap:12px; }
+  .month-nav button { background:var(--surface2); border:1px solid var(--border); color:var(--text); width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:15px; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+  .month-nav button:hover { border-color:var(--accent); color:var(--accent); }
+  #currentMonth { font-size:14px; font-weight:500; min-width:110px; text-align:center; }
+  .view-toggle { display:flex; background:var(--surface2); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  .view-btn { padding:6px 14px; font-size:12px; font-weight:500; cursor:pointer; color:var(--muted); border:none; background:transparent; font-family:'DM Sans',sans-serif; transition:all 0.2s; }
+  .view-btn.active { background:var(--accent); color:#000; }
+
+  /* TABS */
+  .tabs { display:flex; padding:0 40px; border-bottom:1px solid var(--border); overflow-x:auto; }
+  .tab { padding:14px 20px; font-size:12px; font-weight:500; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s; letter-spacing:0.5px; text-transform:uppercase; white-space:nowrap; }
+  .tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+  .tab:hover:not(.active) { color:var(--text); }
+
+  /* MAIN */
+  main { padding:32px 40px; max-width:1400px; margin:0 auto; }
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
+
+  /* CARDS */
+  .summary-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:32px; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; position:relative; overflow:hidden; }
+  .card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .card.income::before { background:var(--safe); }
+  .card.expense::before { background:var(--danger); }
+  .card.balance::before { background:var(--accent); }
+  .card.taxded::before { background:#f0c060; }
+  .card-label { font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin-bottom:10px; }
+  .card-value { font-family:'DM Serif Display',serif; font-size:28px; letter-spacing:-1px; line-height:1; }
+  .card.income .card-value { color:var(--safe); }
+  .card.expense .card-value { color:var(--danger); }
+  .card.balance .card-value { color:var(--accent); }
+  .card.taxded .card-value { color:#f0c060; }
+  .card-sub { font-size:12px; color:var(--muted); margin-top:6px; }
+
+  /* SECTION */
+  .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+  .section-title { font-family:'DM Serif Display',serif; font-size:20px; }
+
+  /* BUTTONS */
+  .btn { padding:10px 20px; border-radius:10px; border:none; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; white-space:nowrap; }
+  .btn-primary { background:var(--accent); color:#000; }
+  .btn-primary:hover { background:#d4f570; transform:translateY(-1px); }
+  .btn-secondary { background:var(--surface2); color:var(--text); border:1px solid var(--border); }
+  .btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
+  .btn-danger { background:transparent; color:var(--danger); border:1px solid var(--danger); font-size:12px; padding:5px 12px; }
+  .btn-danger:hover { background:var(--danger); color:#fff; }
+  .btn-sm { padding:6px 14px; font-size:12px; }
+
+  /* TABLE */
+  .table-wrap { background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden; }
+  table { width:100%; border-collapse:collapse; }
+  th { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); font-weight:500; padding:14px 18px; text-align:left; border-bottom:1px solid var(--border); background:var(--surface2); }
+  td { padding:12px 18px; font-size:13px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:rgba(255,255,255,0.02); }
+  .amount-neg { color:var(--danger); font-weight:500; }
+  .amount-pos { color:var(--safe); font-weight:500; }
+
+  /* BADGES */
+  .cat-badge { display:inline-block; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:500; }
+  .person-tag { font-size:11px; padding:2px 8px; border-radius:10px; font-weight:500; }
+  .person-me { background:rgba(200,240,96,0.15); color:var(--accent); }
+  .person-wife { background:rgba(240,96,168,0.15); color:var(--accent3); }
+  .person-joint { background:rgba(96,212,240,0.15); color:var(--accent2); }
+  .taxded-badge { background:rgba(240,192,96,0.15); color:#f0c060; font-size:10px; padding:2px 6px; border-radius:6px; margin-left:4px; }
+
+  /* FORM ELEMENTS */
+  select, input[type="text"], input[type="number"] {
+    background:var(--surface2); border:1px solid var(--border); border-radius:8px;
+    color:var(--text); font-family:'DM Sans',sans-serif; font-size:13px; padding:7px 12px;
+  }
+  select:focus, input:focus { outline:none; border-color:var(--accent); }
+  textarea { background:var(--surface2); border:1px solid var(--border); border-radius:12px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:12px; padding:14px; resize:vertical; min-height:110px; width:100%; }
+  textarea:focus { outline:none; border-color:var(--accent); }
+  textarea::placeholder, input::placeholder { color:var(--muted); }
+
+  .cat-select { background:var(--surface2); border:1px solid transparent; border-radius:6px; color:var(--text); font-size:12px; padding:3px 8px; font-family:'DM Sans',sans-serif; cursor:pointer; }
+  .cat-select:hover { border-color:var(--border); }
+  .cat-select:focus { outline:none; border-color:var(--accent); }
+
+  /* FILTER ROW */
+  .filter-row { display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap; }
+
+  /* IMPORT */
+  .import-area { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:28px; margin-bottom:24px; }
+  .bank-tabs { display:flex; gap:8px; flex-wrap:wrap; }
+  .bank-tab { padding:5px 14px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--muted); font-size:12px; font-weight:500; cursor:pointer; transition:all 0.2s; font-family:'DM Sans',sans-serif; }
+  .bank-tab.active, .bank-tab:hover { background:var(--accent); color:#000; border-color:var(--accent); }
+  .bank-tab.custom { border-style:dashed; }
+  .file-upload-area { border:1px dashed var(--border); border-radius:12px; padding:18px; text-align:center; cursor:pointer; transition:all 0.2s; margin-bottom:14px; }
+  .file-upload-area:hover { border-color:var(--accent); background:rgba(200,240,96,0.03); }
+  .file-upload-area input[type="file"] { display:none; }
+  .upload-icon { font-size:24px; margin-bottom:6px; }
+  .upload-text { font-size:13px; color:var(--muted); }
+  .upload-text span { color:var(--accent); }
+
+  /* PREVIEW TABLE - editable */
+  .preview-cat-select { background:var(--surface2); border:1px solid var(--border); border-radius:6px; color:var(--text); font-size:12px; padding:3px 8px; font-family:'DM Sans',sans-serif; cursor:pointer; width:100%; }
+  .preview-cat-select:focus { outline:none; border-color:var(--accent); }
+  .skip-row { opacity:0.35; }
+  .skip-btn { font-size:11px; padding:3px 8px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-family:'DM Sans',sans-serif; }
+  .skip-btn.skipped { border-color:var(--danger); color:var(--danger); }
+  .cc-payment-row { background:rgba(255,90,90,0.05); }
+
+  /* ANNUAL */
+  .annual-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:28px; }
+  .month-cell { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px; cursor:pointer; transition:all 0.2s; }
+  .month-cell:hover { border-color:var(--accent); }
+  .month-cell.current-m { border-color:var(--accent); }
+  .month-cell-name { font-size:12px; color:var(--muted); margin-bottom:6px; }
+  .month-cell-exp { font-size:16px; font-weight:500; color:var(--danger); }
+  .month-cell-inc { font-size:12px; color:var(--safe); margin-top:2px; }
+
+  /* BUDGET */
+  .budget-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:28px; }
+  .budget-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px; }
+  .budget-cat { font-size:12px; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+  .budget-amounts { display:flex; align-items:baseline; gap:6px; margin-bottom:10px; }
+  .budget-spent { font-family:'DM Serif Display',serif; font-size:22px; }
+  .budget-limit { font-size:12px; color:var(--muted); }
+  .budget-bar { height:5px; background:var(--surface2); border-radius:3px; overflow:hidden; margin-bottom:6px; }
+  .budget-bar-fill { height:100%; border-radius:3px; transition:width 0.8s ease; }
+  .budget-status { font-size:11px; }
+  .budget-ok { color:var(--safe); } .budget-warn { color:#f0c060; } .budget-over { color:var(--danger); }
+  .budget-input { background:var(--surface2); border:1px solid var(--border); border-radius:6px; color:var(--text); font-size:12px; padding:4px 10px; width:90px; font-family:'DM Sans',sans-serif; margin-top:8px; }
+  .budget-input:focus { outline:none; border-color:var(--accent); }
+
+  /* CHARTS */
+  .report-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:24px; }
+  .chart-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px; }
+  .chart-title { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:20px; }
+  .bar-chart { display:flex; flex-direction:column; gap:12px; }
+  .bar-row { display:grid; grid-template-columns:140px 1fr 80px; gap:10px; align-items:center; }
+  .bar-label { font-size:12px; color:var(--text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .bar-track { height:7px; background:var(--surface2); border-radius:4px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:4px; transition:width 0.8s cubic-bezier(0.4,0,0.2,1); }
+  .bar-amount { font-size:12px; color:var(--muted); text-align:right; }
+
+  /* SETTINGS */
+  .settings-section { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px; margin-bottom:20px; }
+  .settings-title { font-size:14px; font-weight:600; margin-bottom:16px; color:var(--text); }
+  .cat-item { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--border); }
+  .cat-item:last-child { border-bottom:none; }
+  .cat-color-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .cat-name { flex:1; font-size:13px; }
+  .cat-type-badge { font-size:10px; padding:2px 8px; border-radius:10px; }
+  .type-expense { background:rgba(255,90,90,0.15); color:var(--danger); }
+  .type-income { background:rgba(96,240,168,0.15); color:var(--safe); }
+  .type-taxded { background:rgba(240,192,96,0.15); color:#f0c060; }
+  .add-row { display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
+
+  /* TOAST */
+  .toast { position:fixed; bottom:28px; right:28px; background:var(--surface2); border:1px solid var(--border); border-radius:12px; padding:12px 18px; font-size:13px; z-index:999; transform:translateY(100px); opacity:0; transition:all 0.3s; }
+  .toast.show { transform:translateY(0); opacity:1; }
+  .toast.success { border-color:var(--safe); color:var(--safe); }
+  .toast.error { border-color:var(--danger); color:var(--danger); }
+
+  /* EMPTY */
+  .empty { text-align:center; padding:50px 20px; color:var(--muted); }
+  .empty-icon { font-size:36px; margin-bottom:10px; }
+  .empty-text { font-size:14px; }
+
+  /* DIVIDER */
+  .divider { height:1px; background:var(--border); margin:20px 0; }
+
+  @media(max-width:768px) {
+    header { padding:16px 20px; flex-wrap:wrap; gap:12px; }
+    main { padding:20px; }
+    .summary-grid { grid-template-columns:1fr 1fr; }
+    .report-grid { grid-template-columns:1fr; }
+    .budget-grid { grid-template-columns:1fr 1fr; }
+    .annual-grid { grid-template-columns:repeat(3,1fr); }
+    .tabs { padding:0 16px; }
+    .bar-row { grid-template-columns:100px 1fr 70px; }
+  }
+</style>
 </head>
 <body>
-<p class="p1"><span class="s1">우리</span><span class="s2"> </span><span class="s3">가계부</span></p>
-<p class="p2"><span class="s4">월별</span></p>
-<p class="p3"><span class="s5">연간</span></p>
-<p class="p4"><span class="s4"></span><br></p>
-<p class="p5"><span class="s5">‹</span></p>
-<p class="p6"><span class="s4"></span><br></p>
-<p class="p5"><span class="s5">›</span></p>
-<p class="p7"><span class="s4">대시보드</span></p>
-<p class="p8"><span class="s4">내역</span></p>
-<p class="p9"><span class="s4">CSV </span><span class="s6">가져오기</span></p>
-<p class="p8"><span class="s4">예산</span></p>
-<p class="p8"><span class="s4">리포트</span></p>
-<p class="p8"><span class="s4">설정</span></p>
-<p class="p10"><span class="s7">수입</span></p>
-<p class="p11"><span class="s7">$0</span></p>
-<p class="p9"><span class="s7">0</span><span class="s8">건</span></p>
-<p class="p10"><span class="s7">지출</span></p>
-<p class="p12"><span class="s7">$0</span></p>
-<p class="p9"><span class="s7">0</span><span class="s8">건</span></p>
-<p class="p10"><span class="s7">잔액</span></p>
-<p class="p13"><span class="s7">$0</span></p>
-<p class="p8"><span class="s7">수입</span><span class="s9"> - </span><span class="s7">지출</span></p>
-<p class="p10"><span class="s7">세금공제</span><span class="s10"> </span><span class="s7">항목</span></p>
-<p class="p14"><span class="s7">$0</span></p>
-<p class="p8"><span class="s7">연간</span><span class="s9"> </span><span class="s7">누적</span></p>
-<p class="p15"><span class="s4">최근</span><span class="s11"> </span><span class="s4">내역</span></p>
-<p class="p16"><span class="s4">샘플</span><span class="s12"> </span><span class="s4">데이터</span><span class="s12"> </span><span class="s4">보기</span></p>
-<table cellspacing="0" cellpadding="0" class="t1">
-  <tbody>
+
+<header>
+  <div class="logo">우리 <span>가계부</span></div>
+  <div class="header-right">
+    <div class="view-toggle">
+      <button class="view-btn active" onclick="setView('monthly',this)">월별</button>
+      <button class="view-btn" onclick="setView('annual',this)">연간</button>
+    </div>
+    <select class="year-select" id="yearSelect" onchange="onYearChange()"></select>
+    <div class="month-nav" id="monthNavEl">
+      <button onclick="changeMonth(-1)">‹</button>
+      <div id="currentMonth"></div>
+      <button onclick="changeMonth(1)">›</button>
+    </div>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" data-tab="dashboard" onclick="showTab('dashboard',this)">대시보드</div>
+  <div class="tab" data-tab="transactions" onclick="showTab('transactions',this)">내역</div>
+  <div class="tab" data-tab="import" onclick="showTab('import',this)">CSV 가져오기</div>
+  <div class="tab" data-tab="budget" onclick="showTab('budget',this)">예산</div>
+  <div class="tab" data-tab="report" onclick="showTab('report',this)">리포트</div>
+  <div class="tab" data-tab="settings" onclick="showTab('settings',this)">설정</div>
+</div>
+
+<main>
+
+<!-- DASHBOARD -->
+<div id="tab-dashboard" class="tab-content active">
+  <div class="summary-grid">
+    <div class="card income"><div class="card-label">수입</div><div class="card-value" id="d-income">$0</div><div class="card-sub" id="d-income-sub">0건</div></div>
+    <div class="card expense"><div class="card-label">지출</div><div class="card-value" id="d-expense">$0</div><div class="card-sub" id="d-expense-sub">0건</div></div>
+    <div class="card balance"><div class="card-label">잔액</div><div class="card-value" id="d-balance">$0</div><div class="card-sub">수입 - 지출</div></div>
+    <div class="card taxded"><div class="card-label">세금공제 항목</div><div class="card-value" id="d-taxded">$0</div><div class="card-sub" id="d-taxded-sub">연간 누적</div></div>
+  </div>
+  <div class="section-header">
+    <div class="section-title">최근 내역</div>
+    <button class="btn btn-secondary btn-sm" onclick="loadSampleData()">샘플 데이터 보기</button>
+  </div>
+  <div class="table-wrap">
+    <table><thead><tr><th>날짜</th><th>내용</th><th>카테고리</th><th>누가</th><th style="text-align:right">금액</th></tr></thead>
+    <tbody id="recent-tbody"></tbody></table>
+  </div>
+</div>
+
+<!-- TRANSACTIONS -->
+<div id="tab-transactions" class="tab-content">
+  <div class="section-header">
+    <div class="section-title" id="tx-title">내역</div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-secondary btn-sm" onclick="exportCSV()">📄 내보내기</button>
+      <button class="btn btn-danger btn-sm" onclick="clearPeriod()">삭제</button>
+    </div>
+  </div>
+  <div class="filter-row">
+    <select id="f-cat" onchange="renderTransactions()"><option value="">전체 카테고리</option></select>
+    <select id="f-person" onchange="renderTransactions()">
+      <option value="">전체</option><option value="나">나</option><option value="와이프">와이프</option><option value="공동">공동</option>
+    </select>
+    <select id="f-bank" onchange="renderTransactions()"><option value="">전체 은행</option></select>
+    <input type="text" id="f-search" placeholder="검색..." oninput="renderTransactions()" style="min-width:180px">
+  </div>
+  <div class="table-wrap">
+    <table><thead><tr><th>날짜</th><th>내용</th><th>은행</th><th>카테고리</th><th>누가</th><th style="text-align:right">금액</th><th></th></tr></thead>
+    <tbody id="all-tbody"></tbody></table>
+  </div>
+</div>
+
+<!-- IMPORT -->
+<div id="tab-import" class="tab-content">
+  <div class="import-area">
+    <div class="section-header" style="margin-bottom:20px">
+      <div class="section-title">CSV 가져오기</div>
+    </div>
+
+    <div style="margin-bottom:18px">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px">은행 / 카드</div>
+      <div class="bank-tabs" id="bankTabsEl"></div>
+    </div>
+
+    <div style="margin-bottom:18px">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px">누구 계정?</div>
+      <div style="display:flex;gap:8px">
+        <button class="bank-tab active" id="pMe" onclick="selectPerson('나')">나</button>
+        <button class="bank-tab" id="pWife" onclick="selectPerson('와이프')">와이프</button>
+        <button class="bank-tab" id="pJoint" onclick="selectPerson('공동')">공동</button>
+      </div>
+    </div>
+
+    <div class="file-upload-area" onclick="document.getElementById('csvFile').click()">
+      <input type="file" id="csvFile" accept=".csv" onchange="handleFileUpload(event)">
+      <div class="upload-icon">📁</div>
+      <div class="upload-text">클릭하거나 <span>CSV 파일을 드래그</span>하세요</div>
+    </div>
+
+    <div style="text-align:center;color:var(--muted);font-size:12px;margin-bottom:12px">또는</div>
+
+    <div style="display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start">
+      <textarea id="csvText" placeholder="CSV 내용을 여기에 붙여넣기..."></textarea>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <button class="btn btn-primary" onclick="importCSV()">분석하기</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('csvText').value=''">초기화</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PREVIEW -->
+  <div id="importPreview" style="display:none">
+    <div class="section-header">
+      <div class="section-title">가져오기 미리보기</div>
+      <div style="font-size:13px;color:var(--muted)" id="previewCount"></div>
+    </div>
+
+    <div style="background:rgba(255,90,90,0.08);border:1px solid rgba(255,90,90,0.3);border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--muted)" id="ccWarning" style="display:none">
+      💳 <strong style="color:var(--danger)">크레딧 카드 페이먼트로 보이는 항목</strong>이 감지됐어요. 이 항목들은 지출이 아니라 카드빚 상환이므로 <strong>제외(Skip)</strong>하는 걸 추천해요.
+    </div>
+
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px">카테고리를 수정하거나, 가져오지 않을 항목은 Skip 버튼을 누르세요.</div>
+
+    <div class="table-wrap" style="max-height:400px;overflow-y:auto">
+      <table>
+        <thead><tr><th>날짜</th><th>내용</th><th>카테고리</th><th style="text-align:right">금액</th><th></th></tr></thead>
+        <tbody id="preview-tbody"></tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px;display:flex;gap:10px;align-items:center">
+      <button class="btn btn-primary" onclick="confirmImport()">✓ 저장하기</button>
+      <button class="btn btn-secondary" onclick="cancelImport()">취소</button>
+      <span id="skipCount" style="font-size:12px;color:var(--muted)"></span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="chart-card">
+    <div class="chart-title">각 은행 CSV 다운로드 방법</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div><div style="font-size:13px;font-weight:600;margin-bottom:6px;color:var(--accent)">Chase</div><div style="font-size:12px;color:var(--muted);line-height:1.8">chase.com 로그인 → 계좌 클릭 → Download → CSV</div></div>
+      <div><div style="font-size:13px;font-weight:600;margin-bottom:6px;color:var(--accent)">Citi</div><div style="font-size:12px;color:var(--muted);line-height:1.8">citibank.com → View Statements → Download → CSV</div></div>
+      <div><div style="font-size:13px;font-weight:600;margin-bottom:6px;color:var(--accent)">Bank of America</div><div style="font-size:12px;color:var(--muted);line-height:1.8">bankofamerica.com → 계좌 → Download → Microsoft Excel (CSV)</div></div>
+      <div><div style="font-size:13px;font-weight:600;margin-bottom:6px;color:var(--accent)">Wells Fargo</div><div style="font-size:12px;color:var(--muted);line-height:1.8">wellsfargo.com → 계좌 → Download Transactions → Comma-Delimited</div></div>
+      <div><div style="font-size:13px;font-weight:600;margin-bottom:6px;color:var(--accent)">Amex</div><div style="font-size:12px;color:var(--muted);line-height:1.8">americanexpress.com → 계좌 → Statements → Download → CSV</div></div>
+      <div><div style="font-size:13px;font-weight:600;margin-bottom:6px;color:var(--accent)">Capital One</div><div style="font-size:12px;color:var(--muted);line-height:1.8">capitalone.com → 계좌 → Download Transactions → CSV</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BUDGET -->
+<div id="tab-budget" class="tab-content">
+  <div class="section-header">
+    <div class="section-title">월 예산 설정</div>
+    <button class="btn btn-primary btn-sm" onclick="saveBudgets()">저장</button>
+  </div>
+  <div class="budget-grid" id="budget-grid"></div>
+</div>
+
+<!-- REPORT -->
+<div id="tab-report" class="tab-content">
+  <div id="monthly-report">
+    <div class="section-header">
+      <div class="section-title" id="report-title">월별 리포트</div>
+      <button class="btn btn-secondary btn-sm" onclick="exportCSV()">📄 내보내기</button>
+    </div>
+    <div class="report-grid">
+      <div class="chart-card"><div class="chart-title">카테고리별 지출</div><div class="bar-chart" id="cat-chart"></div></div>
+      <div class="chart-card"><div class="chart-title">인별 지출</div><div id="person-chart"></div></div>
+    </div>
+    <div class="chart-card"><div class="chart-title">주간 지출 추이</div><div id="weekly-chart" style="display:flex;gap:6px;align-items:flex-end;height:100px;padding-top:8px"></div></div>
+  </div>
+
+  <div id="annual-report" style="display:none">
+    <div class="section-header">
+      <div class="section-title" id="annual-report-title">연간 리포트</div>
+      <button class="btn btn-secondary btn-sm" onclick="exportAnnualCSV()">📄 연간 내보내기</button>
+    </div>
+    <div class="summary-grid" style="margin-bottom:24px">
+      <div class="card income"><div class="card-label">연간 수입</div><div class="card-value" id="a-income">$0</div></div>
+      <div class="card expense"><div class="card-label">연간 지출</div><div class="card-value" id="a-expense">$0</div></div>
+      <div class="card balance"><div class="card-label">연간 잔액</div><div class="card-value" id="a-balance">$0</div></div>
+      <div class="card taxded"><div class="card-label">연간 세금공제</div><div class="card-value" id="a-taxded">$0</div><div class="card-sub">세금보고용</div></div>
+    </div>
+    <div class="report-grid">
+      <div class="chart-card"><div class="chart-title">월별 지출 추이</div><div id="monthly-trend" style="display:flex;gap:6px;align-items:flex-end;height:120px;padding-top:8px"></div></div>
+      <div class="chart-card"><div class="chart-title">연간 카테고리별</div><div class="bar-chart" id="annual-cat-chart"></div></div>
+    </div>
+    <div class="chart-card" style="margin-top:20px">
+      <div class="chart-title">세금공제 항목 상세 (세금보고용)</div>
+      <div id="taxded-detail"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS -->
+<div id="tab-settings" class="tab-content">
+  <div class="settings-section">
+    <div class="settings-title">카테고리 관리</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">카테고리 추가/삭제, 세금공제 항목 지정 (헌금, 의료비 등)</div>
+    <div id="cat-list"></div>
+    <div class="divider"></div>
+    <div style="font-size:13px;font-weight:500;margin-bottom:10px">새 카테고리 추가</div>
+    <div class="add-row">
+      <input type="text" id="new-cat-name" placeholder="카테고리 이름 (예: 헌금)" style="flex:1;min-width:140px">
+      <select id="new-cat-type">
+        <option value="expense">지출</option>
+        <option value="income">수입</option>
+        <option value="taxded">세금공제 (지출)</option>
+      </select>
+      <input type="text" id="new-cat-color" placeholder="#색상코드" value="#a78bfa" style="width:110px">
+      <button class="btn btn-primary btn-sm" onclick="addCategory()">추가</button>
+    </div>
+  </div>
+
+  <div class="settings-section">
+    <div class="settings-title">은행 / 카드 관리</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">새 은행이나 카드를 추가하면 CSV 가져오기에 자동으로 나타나요</div>
+    <div id="bank-list"></div>
+    <div class="divider"></div>
+    <div style="font-size:13px;font-weight:500;margin-bottom:10px">새 은행 / 카드 추가</div>
+    <div class="add-row">
+      <input type="text" id="new-bank-name" placeholder="은행/카드 이름 (예: Amex Blue)" style="flex:1;min-width:160px">
+      <select id="new-bank-format">
+        <option value="chase">Chase 형식</option>
+        <option value="citi">Citi 형식</option>
+        <option value="bofa">BofA 형식</option>
+        <option value="wells">Wells Fargo 형식</option>
+        <option value="amex">Amex 형식</option>
+        <option value="generic">기타 (자동감지)</option>
+      </select>
+      <button class="btn btn-primary btn-sm" onclick="addBank()">추가</button>
+    </div>
+  </div>
+
+  <div class="settings-section">
+    <div class="settings-title">데이터 관리</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-secondary btn-sm" onclick="exportAllData()">전체 데이터 백업</button>
+      <button class="btn btn-danger btn-sm" onclick="clearAllData()">전체 데이터 삭제</button>
+    </div>
+  </div>
+</div>
+
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// DEFAULT CATEGORIES
+// ============================================================
+const DEFAULT_CATS = [
+  { key:'grocery',       label:'식비 (식료품)',   color:'#60f0a8', type:'expense' },
+  { key:'dining',        label:'외식/배달',        color:'#f0c060', type:'expense' },
+  { key:'housing',       label:'주거비',           color:'#60a8f0', type:'expense' },
+  { key:'transport',     label:'교통/주유',        color:'#c060f0', type:'expense' },
+  { key:'shopping',      label:'쇼핑',             color:'#f060a8', type:'expense' },
+  { key:'subscriptions', label:'구독 서비스',      color:'#60d4f0', type:'expense' },
+  { key:'baby',          label:'육아용품',         color:'#f08060', type:'expense' },
+  { key:'medical',       label:'의료/보험',        color:'#a8f060', type:'expense' },
+  { key:'tithe',         label:'헌금',             color:'#e0c0ff', type:'taxded' },
+  { key:'savings',       label:'저축/투자',        color:'#c8f060', type:'expense' },
+  { key:'income',        label:'수입',             color:'#60f0a8', type:'income'  },
+  { key:'other',         label:'기타',             color:'#888',    type:'expense' },
+];
+
+const DEFAULT_BANKS = [
+  { key:'chase',   label:'Chase',        format:'chase'   },
+  { key:'citi',    label:'Citi',         format:'citi'    },
+  { key:'bofa',    label:'Bank of America', format:'bofa' },
+  { key:'wells',   label:'Wells Fargo',  format:'wells'   },
+  { key:'amex',    label:'Amex',         format:'amex'    },
+  { key:'capital', label:'Capital One',  format:'generic' },
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let currentBank = 'chase';
+let currentPerson = '나';
+let pendingImport = [];
+let currentDate = new Date();
+let currentView = 'monthly'; // monthly | annual
+
+function getCategories() {
+  const raw = localStorage.getItem('categories');
+  return raw ? JSON.parse(raw) : DEFAULT_CATS;
+}
+function saveCategories(cats) { localStorage.setItem('categories', JSON.stringify(cats)); }
+
+function getBanks() {
+  const raw = localStorage.getItem('banks');
+  return raw ? JSON.parse(raw) : DEFAULT_BANKS;
+}
+function saveBanks(banks) { localStorage.setItem('banks', JSON.stringify(banks)); }
+
+function getMonthKey(d) { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; }
+function getMonthLabel(d) { return d.toLocaleDateString('ko-KR',{year:'numeric',month:'long'}); }
+
+function getData(d) {
+  const key = `budget_${getMonthKey(d || currentDate)}`;
+  const raw = localStorage.getItem(key);
+  return raw ? JSON.parse(raw) : [];
+}
+function saveData(arr, d) {
+  localStorage.setItem(`budget_${getMonthKey(d || currentDate)}`, JSON.stringify(arr));
+}
+function getYearData(year) {
+  let all = [];
+  for (let m = 0; m < 12; m++) {
+    const d = new Date(year, m, 1);
+    all = all.concat(getData(d));
+  }
+  return all;
+}
+
+function getBudgets() { return JSON.parse(localStorage.getItem('budgets') || '{}'); }
+function saveBudgetData(b) { localStorage.setItem('budgets', JSON.stringify(b)); }
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  populateYearSelect();
+  updateMonthDisplay();
+  renderBankTabs();
+  renderSettings();
+  renderDashboard();
+}
+
+function populateYearSelect() {
+  const sel = document.getElementById('yearSelect');
+  const yr = new Date().getFullYear();
+  sel.innerHTML = '';
+  for (let y = yr + 1; y >= yr - 3; y--) {
+    const opt = document.createElement('option');
+    opt.value = y; opt.textContent = y + '년';
+    if (y === currentDate.getFullYear()) opt.selected = true;
+    sel.appendChild(opt);
+  }
+}
+
+function onYearChange() {
+  currentDate.setFullYear(parseInt(document.getElementById('yearSelect').value));
+  updateMonthDisplay();
+}
+
+// ============================================================
+// VIEW / NAV
+// ============================================================
+function setView(view, el) {
+  currentView = view;
+  document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('monthNavEl').style.display = view === 'monthly' ? 'flex' : 'none';
+  refreshAll();
+}
+
+function updateMonthDisplay() {
+  document.getElementById('currentMonth').textContent = getMonthLabel(currentDate);
+  refreshAll();
+}
+
+function changeMonth(dir) {
+  currentDate.setMonth(currentDate.getMonth() + dir);
+  document.getElementById('yearSelect').value = currentDate.getFullYear();
+  updateMonthDisplay();
+}
+
+// ============================================================
+// TABS
+// ============================================================
+function showTab(name, el) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(`tab-${name}`).classList.add('active');
+  el.classList.add('active');
+  if (name === 'report')       renderReport();
+  if (name === 'budget')       renderBudget();
+  if (name === 'transactions') renderTransactions();
+  if (name === 'dashboard')    renderDashboard();
+  if (name === 'settings')     renderSettings();
+}
+
+// ============================================================
+// HELPERS
+// ============================================================
+function fmt(n) {
+  const abs = Math.abs(n);
+  const s = abs.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  return n < 0 ? `-$${s}` : `$${s}`;
+}
+function getCat(key) { return getCategories().find(c => c.key === key) || {label:key,color:'#888',type:'expense'}; }
+function personClass(p) { return p === '나' ? 'person-me' : p === '와이프' ? 'person-wife' : 'person-joint'; }
+function catBadgeHtml(key) {
+  const c = getCat(key);
+  const taxTag = c.type === 'taxded' ? '<span class="taxded-badge">공제</span>' : '';
+  return `<span class="cat-badge" style="background:${c.color}22;color:${c.color}">${c.label}</span>${taxTag}`;
+}
+function buildCatOptions(selected) {
+  return getCategories().map(c =>
+    `<option value="${c.key}" ${c.key===selected?'selected':''}>${c.label}${c.type==='taxded'?' (공제)':''}</option>`
+  ).join('');
+}
+
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = `toast ${type} show`;
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ============================================================
+// DASHBOARD
+// ============================================================
+function renderDashboard() {
+  const data = currentView === 'annual'
+    ? getYearData(currentDate.getFullYear())
+    : getData();
+
+  const cats = getCategories();
+  const taxdedKeys = new Set(cats.filter(c => c.type === 'taxded').map(c => c.key));
+  const incomeKeys = new Set(cats.filter(c => c.type === 'income').map(c => c.key));
+
+  const expenses = data.filter(t => t.amount < 0 && !incomeKeys.has(t.category));
+  const incomes  = data.filter(t => t.amount > 0 || incomeKeys.has(t.category));
+  const taxded   = data.filter(t => taxdedKeys.has(t.category));
+
+  const totalExp = expenses.reduce((s,t) => s + Math.abs(t.amount), 0);
+  const totalInc = incomes.reduce((s,t) => s + Math.abs(t.amount), 0);
+  const totalTax = taxded.reduce((s,t) => s + Math.abs(t.amount), 0);
+
+  // Annual tax: always full year
+  const yearTaxded = currentView === 'monthly'
+    ? getYearData(currentDate.getFullYear()).filter(t => taxdedKeys.has(t.category))
+    : taxded;
+  const yearTaxTotal = yearTaxded.reduce((s,t) => s + Math.abs(t.amount), 0);
+
+  document.getElementById('d-income').textContent = fmt(totalInc);
+  document.getElementById('d-expense').textContent = fmt(-totalExp);
+  document.getElementById('d-balance').textContent = fmt(totalInc - totalExp);
+  document.getElementById('d-income-sub').textContent = `${incomes.length}건`;
+  document.getElementById('d-expense-sub').textContent = `${expenses.length}건`;
+  document.getElementById('d-taxded').textContent = fmt(yearTaxTotal);
+  document.getElementById('d-taxded-sub').textContent = `${currentDate.getFullYear()}년 누적`;
+
+  const recent = [...data].sort((a,b) => b.date.localeCompare(a.date)).slice(0,10);
+  const tbody = document.getElementById('recent-tbody');
+  if (!recent.length) {
+    tbody.innerHTML = `<tr><td colspan="5"><div class="empty"><div class="empty-icon">📂</div><div class="empty-text">데이터가 없어요. CSV를 가져와보세요!</div></div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = recent.map(tx => `
     <tr>
-      <td valign="middle" class="td1">
-        <p class="p10"><span class="s7">날짜</span></p>
+      <td>${tx.date}</td>
+      <td>${tx.description}</td>
+      <td>${catBadgeHtml(tx.category)}</td>
+      <td><span class="person-tag ${personClass(tx.person)}">${tx.person}</span></td>
+      <td style="text-align:right" class="${tx.amount<0?'amount-neg':'amount-pos'}">${fmt(tx.amount)}</td>
+    </tr>`).join('');
+}
+
+// ============================================================
+// TRANSACTIONS
+// ============================================================
+function renderTransactions() {
+  const data = currentView === 'annual'
+    ? getYearData(currentDate.getFullYear())
+    : getData();
+
+  document.getElementById('tx-title').textContent = currentView === 'annual'
+    ? `${currentDate.getFullYear()}년 전체 내역`
+    : `${getMonthLabel(currentDate)} 내역`;
+
+  // Populate filter dropdowns
+  const catSel = document.getElementById('f-cat');
+  if (catSel.options.length <= 1) {
+    getCategories().forEach(c => {
+      const o = document.createElement('option');
+      o.value = c.key; o.textContent = c.label; catSel.appendChild(o);
+    });
+  }
+  const bankSel = document.getElementById('f-bank');
+  const banks = [...new Set(data.map(t => t.bank).filter(Boolean))];
+  bankSel.innerHTML = '<option value="">전체 은행</option>';
+  banks.forEach(b => { const o = document.createElement('option'); o.value=b; o.textContent=b; bankSel.appendChild(o); });
+
+  const catF = document.getElementById('f-cat').value;
+  const personF = document.getElementById('f-person').value;
+  const bankF = document.getElementById('f-bank').value;
+  const search = document.getElementById('f-search').value.toLowerCase();
+
+  let filtered = data.filter(tx => {
+    if (catF && tx.category !== catF) return false;
+    if (personF && tx.person !== personF) return false;
+    if (bankF && tx.bank !== bankF) return false;
+    if (search && !tx.description.toLowerCase().includes(search)) return false;
+    return true;
+  }).sort((a,b) => b.date.localeCompare(a.date));
+
+  const tbody = document.getElementById('all-tbody');
+  if (!filtered.length) {
+    tbody.innerHTML = `<tr><td colspan="7"><div class="empty"><div class="empty-icon">🔍</div><div class="empty-text">내역이 없어요</div></div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = filtered.map(tx => `
+    <tr>
+      <td>${tx.date}</td>
+      <td>${tx.description}</td>
+      <td style="font-size:12px;color:var(--muted)">${tx.bank||''}</td>
+      <td><select class="cat-select" onchange="updateCat('${tx.id}',this.value)">${buildCatOptions(tx.category)}</select></td>
+      <td><span class="person-tag ${personClass(tx.person)}">${tx.person}</span></td>
+      <td style="text-align:right" class="${tx.amount<0?'amount-neg':'amount-pos'}">${fmt(tx.amount)}</td>
+      <td><button class="btn btn-danger btn-sm" onclick="deleteTx('${tx.id}')">삭제</button></td>
+    </tr>`).join('');
+}
+
+function updateCat(id, cat) {
+  // Try current month first, then search all months if annual view
+  if (currentView === 'annual') {
+    for (let m = 0; m < 12; m++) {
+      const d = new Date(currentDate.getFullYear(), m, 1);
+      const data = getData(d);
+      const tx = data.find(t => String(t.id) === String(id));
+      if (tx) { tx.category = cat; saveData(data, d); break; }
+    }
+  } else {
+    const data = getData();
+    const tx = data.find(t => String(t.id) === String(id));
+    if (tx) { tx.category = cat; saveData(data); }
+  }
+  refreshAll();
+}
+
+function deleteTx(id) {
+  if (currentView === 'annual') {
+    for (let m = 0; m < 12; m++) {
+      const d = new Date(currentDate.getFullYear(), m, 1);
+      const data = getData(d).filter(t => String(t.id) !== String(id));
+      saveData(data, d);
+    }
+  } else {
+    saveData(getData().filter(t => String(t.id) !== String(id)));
+  }
+  renderTransactions(); renderDashboard();
+}
+
+function clearPeriod() {
+  const label = currentView === 'annual' ? `${currentDate.getFullYear()}년 전체` : getMonthLabel(currentDate);
+  if (!confirm(`${label} 내역을 모두 삭제할까요?`)) return;
+  if (currentView === 'annual') {
+    for (let m = 0; m < 12; m++) { const d = new Date(currentDate.getFullYear(),m,1); saveData([], d); }
+  } else { saveData([]); }
+  refreshAll();
+}
+
+// ============================================================
+// IMPORT
+// ============================================================
+function renderBankTabs() {
+  const el = document.getElementById('bankTabsEl');
+  const banks = getBanks();
+  el.innerHTML = banks.map((b,i) =>
+    `<button class="bank-tab ${i===0?'active':''}" onclick="selectBank(this,'${b.key}')">${b.label}</button>`
+  ).join('') + `<button class="bank-tab custom" onclick="showTab('settings',document.querySelector('[data-tab=settings]'))">+ 은행 추가</button>`;
+  if (banks.length) currentBank = banks[0].key;
+}
+
+function selectBank(el, key) {
+  document.querySelectorAll('#bankTabsEl .bank-tab').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  currentBank = key;
+}
+
+function selectPerson(p) {
+  currentPerson = p;
+  ['Me','Wife','Joint'].forEach(x => {
+    const id = 'p'+x;
+    const val = x==='Me'?'나':x==='Wife'?'와이프':'공동';
+    document.getElementById(id).classList.toggle('active', val===p);
+  });
+}
+
+function handleFileUpload(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => { document.getElementById('csvText').value = ev.target.result; };
+  reader.readAsText(file);
+}
+
+// CC PAYMENT KEYWORDS
+const CC_PAYMENT_PATTERNS = /credit card payment|autopay|online payment|payment thank|thank you payment|payment received|card payment|bill payment/i;
+
+function isCCPayment(desc) { return CC_PAYMENT_PATTERNS.test(desc); }
+
+// AUTO-CATEGORY RULES
+const CAT_RULES = [
+  { p:/trader joe|kroger|whole food|safeway|costco|target|walmart|aldi|sprout|publix|h.?mart|hmart|grocery|market|supermarket|food lion|wegman|stop.?shop/i, c:'grocery' },
+  { p:/restaurant|mcdonald|chipotle|starbucks|coffee|doordash|ubereats|grubhub|pizza|sushi|burger|taco|cafe|diner|bar |dining|chick.?fil|panera|subway|dunkin/i, c:'dining' },
+  { p:/rent|mortgage|hoa|water bill|electric|utility|pg&e|con ed|electricity|gas bill|internet|comcast|verizon fios/i, c:'housing' },
+  { p:/shell|chevron|bp |exxon|mobil|arco|76 |gas station|fuel|uber|lyft|parking|metro|transit|bart|mta|amtrak|toll/i, c:'transport' },
+  { p:/amazon|ebay|etsy|zara|h&m|gap|nordstrom|macy|bloomingdale|online|shop|store|best buy|ikea|wayfair/i, c:'shopping' },
+  { p:/netflix|spotify|hulu|apple\.com\/bill|google play|youtube|disney\+|hbo|amazon prime|subscription|membership|adobe|canva|notion/i, c:'subscriptions' },
+  { p:/baby|diaper|gerber|pamper|huggies|toy|carter|children|kids|infant/i, c:'baby' },
+  { p:/doctor|hospital|pharmacy|cvs|walgreens|rite aid|dental|vision|insurance|copay|medical|health|urgent care/i, c:'medical' },
+  { p:/church|tithe|offering|donation to.*church|parish|congregation|ministry/i, c:'tithe' },
+  { p:/fidelity|vanguard|schwab|robinhood|401k|roth|ira|transfer.*savings|savings.*transfer|invest/i, c:'savings' },
+  { p:/payroll|salary|direct deposit|zelle.*received|venmo.*received|deposit.*payroll|ach.*credit/i, c:'income' },
+];
+
+function autoCategory(desc) {
+  for (const rule of CAT_RULES) { if (rule.p.test(desc)) return rule.c; }
+  return 'other';
+}
+
+// LEARNED CATEGORIES (remembers user corrections)
+function getLearnedCats() { return JSON.parse(localStorage.getItem('learnedCats') || '{}'); }
+function learnCategory(desc, cat) {
+  const learned = getLearnedCats();
+  // Store first 3 words as key
+  const key = desc.trim().split(/\s+/).slice(0,3).join(' ').toUpperCase();
+  learned[key] = cat;
+  localStorage.setItem('learnedCats', JSON.stringify(learned));
+}
+function smartCategory(desc) {
+  const learned = getLearnedCats();
+  const key = desc.trim().split(/\s+/).slice(0,3).join(' ').toUpperCase();
+  return learned[key] || autoCategory(desc);
+}
+
+// CSV PARSERS
+function splitCSVLine(line) {
+  const result = []; let cur = ''; let inQ = false;
+  for (const c of line) {
+    if (c === '"') { inQ = !inQ; }
+    else if (c === ',' && !inQ) { result.push(cur.trim()); cur = ''; }
+    else cur += c;
+  }
+  result.push(cur.trim()); return result;
+}
+
+function normalizeDate(str) {
+  if (!str) return '';
+  str = str.replace(/"/g,'').trim();
+  const m = str.match(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})/);
+  if (m) { const yr = m[3].length===2?'20'+m[3]:m[3]; return `${yr}-${m[1].padStart(2,'0')}-${m[2].padStart(2,'0')}`; }
+  return str;
+}
+
+function makeTx(date, desc, bank, amount) {
+  return { id: Date.now() + Math.random(), date: normalizeDate(date), description: (desc||'').replace(/"/g,''), bank, amount: parseFloat(amount)||0, category: smartCategory(desc||''), person: currentPerson };
+}
+
+const PARSERS = {
+  // Chase: Date,PostDate,Desc,Category,Type,Amount,Memo
+  chase: cols => cols.length >= 6 ? makeTx(cols[0],cols[2],'Chase',cols[5]) : null,
+  // Citi: Status,Date,Desc,Debit,Credit
+  citi: cols => {
+    if (cols.length < 4) return null;
+    const debit = parseFloat(cols[3])||0, credit = parseFloat(cols[4])||0;
+    return makeTx(cols[1], cols[2], 'Citi', credit>0?credit:-debit);
+  },
+  // BofA: Date,Desc,Amount,RunningBal
+  bofa: cols => cols.length >= 3 ? makeTx(cols[0],cols[1],'Bank of America',cols[2]) : null,
+  // Wells: Date,Amount,*,*,Desc
+  wells: cols => cols.length >= 5 ? makeTx(cols[0],cols[4],'Wells Fargo',cols[1]) : null,
+  // Amex: Date,Ref,Amount,Desc  (amount positive = charge)
+  amex: cols => cols.length >= 4 ? makeTx(cols[0],cols[3],'Amex',-Math.abs(parseFloat(cols[2])||0)) : null,
+  generic: cols => {
+    if (cols.length < 3) return null;
+    const amt = parseFloat(cols[cols.length-1]) || parseFloat(cols[2]);
+    return makeTx(cols[0], cols[1], 'Other', amt);
+  },
+};
+
+function getBankFormat(key) {
+  const banks = getBanks();
+  const b = banks.find(x => x.key === key);
+  return b ? b.format : 'generic';
+}
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n').map(l=>l.trim()).filter(Boolean);
+  if (lines.length < 2) return [];
+  const format = getBankFormat(currentBank);
+  const parser = PARSERS[format] || PARSERS.generic;
+  const results = [];
+  for (let i = 1; i < lines.length; i++) {
+    try { const tx = parser(splitCSVLine(lines[i])); if (tx && !isNaN(tx.amount) && tx.amount !== 0) results.push(tx); } catch(e) {}
+  }
+  return results;
+}
+
+function importCSV() {
+  const text = document.getElementById('csvText').value.trim();
+  if (!text) { showToast('CSV 내용을 입력하거나 파일을 선택하세요', 'error'); return; }
+  const parsed = parseCSV(text);
+  if (!parsed.length) { showToast('파싱 실패. 은행 선택과 형식을 확인하세요', 'error'); return; }
+  pendingImport = parsed.map(tx => ({ ...tx, _skip: false }));
+  renderPreview();
+  document.getElementById('importPreview').style.display = 'block';
+  document.getElementById('importPreview').scrollIntoView({ behavior:'smooth' });
+}
+
+function renderPreview() {
+  const hasCCPayment = pendingImport.some(tx => isCCPayment(tx.description));
+  const ccWarn = document.getElementById('ccWarning');
+  ccWarn.style.display = hasCCPayment ? 'block' : 'none';
+
+  const skipped = pendingImport.filter(t => t._skip).length;
+  document.getElementById('previewCount').textContent = `총 ${pendingImport.length}건`;
+  document.getElementById('skipCount').textContent = skipped > 0 ? `${skipped}건 제외됨` : '';
+
+  const tbody = document.getElementById('preview-tbody');
+  tbody.innerHTML = pendingImport.map((tx, i) => {
+    const isCC = isCCPayment(tx.description);
+    const rowClass = tx._skip ? 'skip-row' : isCC ? 'cc-payment-row' : '';
+    return `<tr class="${rowClass}" id="prev-row-${i}">
+      <td>${tx.date}</td>
+      <td style="font-size:12px">${tx.description} ${isCC?'<span style="font-size:10px;color:var(--danger)">[카드결제]</span>':''}</td>
+      <td>
+        <select class="preview-cat-select" onchange="updatePendingCat(${i},this.value)" ${tx._skip?'disabled':''}>
+          ${buildCatOptions(tx.category)}
+        </select>
       </td>
-      <td valign="middle" class="td1">
-        <p class="p10"><span class="s7">내용</span></p>
+      <td style="text-align:right" class="${tx.amount<0?'amount-neg':'amount-pos'}">${fmt(tx.amount)}</td>
+      <td>
+        <button class="skip-btn ${tx._skip?'skipped':''}" onclick="toggleSkip(${i})">
+          ${tx._skip?'되돌리기':'Skip'}
+        </button>
       </td>
-      <td valign="middle" class="td2">
-        <p class="p10"><span class="s7">카테고리</span></p>
-      </td>
-      <td valign="middle" class="td1">
-        <p class="p10"><span class="s7">누가</span></p>
-      </td>
-      <td valign="middle" class="td1">
-        <p class="p17"><span class="s7">금액</span></p>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<p class="p18"><span class="s4"></span><br></p>
-<p class="p4"><span class="s4"></span><br></p>
+    </tr>`;
+  }).join('');
+}
+
+function updatePendingCat(i, cat) {
+  pendingImport[i].category = cat;
+  learnCategory(pendingImport[i].description, cat); // learn for future
+}
+
+function toggleSkip(i) {
+  pendingImport[i]._skip = !pendingImport[i]._skip;
+  renderPreview();
+}
+
+function confirmImport() {
+  const toSave = pendingImport.filter(tx => !tx._skip).map(({_skip, ...tx}) => tx);
+  if (!toSave.length) { showToast('저장할 항목이 없어요', 'error'); return; }
+
+  // Group by month and save
+  const byMonth = {};
+  toSave.forEach(tx => {
+    const mk = tx.date.substring(0,7);
+    if (!byMonth[mk]) byMonth[mk] = [];
+    byMonth[mk].push(tx);
+  });
+
+  Object.entries(byMonth).forEach(([mk, txs]) => {
+    const [yr, mo] = mk.split('-').map(Number);
+    const d = new Date(yr, mo-1, 1);
+    const existing = getData(d);
+    saveData([...existing, ...txs], d);
+  });
+
+  const skipped = pendingImport.filter(t => t._skip).length;
+  showToast(`✓ ${toSave.length}건 저장! ${skipped>0?`(${skipped}건 제외)`:''}`, 'success');
+  pendingImport = [];
+  document.getElementById('importPreview').style.display = 'none';
+  document.getElementById('csvText').value = '';
+  refreshAll();
+}
+
+function cancelImport() {
+  pendingImport = [];
+  document.getElementById('importPreview').style.display = 'none';
+}
+
+// ============================================================
+// BUDGET
+// ============================================================
+function renderBudget() {
+  const data = getData();
+  const cats = getCategories().filter(c => c.type !== 'income');
+  const budgets = getBudgets();
+  const spendBycat = {};
+  data.filter(t => t.amount < 0).forEach(t => {
+    spendBycat[t.category] = (spendBycat[t.category]||0) + Math.abs(t.amount);
+  });
+
+  document.getElementById('budget-grid').innerHTML = cats.map(cat => {
+    const limit = parseFloat(budgets[cat.key])||0;
+    const spent = spendBycat[cat.key]||0;
+    const pct = limit > 0 ? Math.min((spent/limit)*100,100) : 0;
+    const over = limit>0 && spent>limit, warn = limit>0 && spent/limit>=0.8;
+    const statusClass = over?'budget-over':warn?'budget-warn':'budget-ok';
+    const statusText = over?`$${(spent-limit).toFixed(2)} 초과!`:warn?'주의: 80% 사용':limit>0?`$${(limit-spent).toFixed(2)} 남음`:'예산 미설정';
+    const barColor = over?'var(--danger)':warn?'#f0c060':cat.color;
+    const taxTag = cat.type==='taxded'?'<span class="taxded-badge" style="font-size:10px;margin-left:4px">공제</span>':'';
+    return `<div class="budget-card">
+      <div class="budget-cat">${cat.label}${taxTag}</div>
+      <div class="budget-amounts"><span class="budget-spent" style="color:${cat.color}">${fmt(-spent)}</span><span class="budget-limit">${limit>0?`/ $${limit.toFixed(0)}`:'/ 미설정'}</span></div>
+      ${limit>0?`<div class="budget-bar"><div class="budget-bar-fill" style="width:${pct}%;background:${barColor}"></div></div>`:''}
+      <div class="budget-status ${statusClass}">${statusText}</div>
+      <input class="budget-input" type="number" placeholder="예산 $" value="${limit||''}" data-cat="${cat.key}" min="0">
+    </div>`;
+  }).join('');
+}
+
+function saveBudgets() {
+  const b = {};
+  document.querySelectorAll('.budget-input').forEach(inp => { if (inp.value) b[inp.dataset.cat]=parseFloat(inp.value); });
+  saveBudgetData(b);
+  renderBudget(); renderDashboard();
+  showToast('✓ 예산 저장됐어요!');
+}
+
+// ============================================================
+// REPORT
+// ============================================================
+function renderReport() {
+  if (currentView === 'annual') { renderAnnualReport(); return; }
+  renderMonthlyReport();
+}
+
+function renderMonthlyReport() {
+  document.getElementById('monthly-report').style.display = 'block';
+  document.getElementById('annual-report').style.display = 'none';
+  document.getElementById('report-title').textContent = getMonthLabel(currentDate) + ' 리포트';
+
+  const data = getData();
+  const cats = getCategories();
+  const incomeKeys = new Set(cats.filter(c=>c.type==='income').map(c=>c.key));
+  const expenses = data.filter(t => t.amount<0 && !incomeKeys.has(t.category));
+  const totalExp = expenses.reduce((s,t)=>s+Math.abs(t.amount),0);
+
+  // Cat chart
+  const bycat = {};
+  expenses.forEach(t => { bycat[t.category]=(bycat[t.category]||0)+Math.abs(t.amount); });
+  const sorted = Object.entries(bycat).sort((a,b)=>b[1]-a[1]);
+  document.getElementById('cat-chart').innerHTML = sorted.length===0
+    ? '<div class="empty"><div class="empty-text">데이터 없음</div></div>'
+    : sorted.map(([key,val]) => {
+        const c = getCat(key);
+        const pct = totalExp>0?(val/totalExp*100):0;
+        return `<div class="bar-row"><div class="bar-label">${c.label}</div><div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${c.color}"></div></div><div class="bar-amount">${fmt(-val)}</div></div>`;
+      }).join('');
+
+  // Person chart
+  const byPerson = {};
+  expenses.forEach(t => { byPerson[t.person]=(byPerson[t.person]||0)+Math.abs(t.amount); });
+  const persons = Object.entries(byPerson);
+  document.getElementById('person-chart').innerHTML = persons.length===0
+    ? '<div class="empty"><div class="empty-text">데이터 없음</div></div>'
+    : `<div class="bar-chart">${persons.map(([name,val])=>{
+        const pct=totalExp>0?(val/totalExp*100):0;
+        const color=name==='나'?'var(--accent)':name==='와이프'?'var(--accent3)':'var(--accent2)';
+        return `<div class="bar-row"><div class="bar-label">${name}</div><div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${color}"></div></div><div class="bar-amount">${fmt(-val)}</div></div>`;
+      }).join('')}</div>`;
+
+  // Weekly
+  const byWeek=[0,0,0,0,0];
+  expenses.forEach(t=>{ const d=new Date(t.date); byWeek[Math.min(Math.floor((d.getDate()-1)/7),4)]+=Math.abs(t.amount); });
+  const maxW=Math.max(...byWeek,1);
+  document.getElementById('weekly-chart').innerHTML=byWeek.map((val,i)=>`
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="font-size:10px;color:var(--muted)">${fmt(-val)}</div>
+      <div style="width:100%;background:var(--accent);border-radius:4px 4px 0 0;height:${Math.round((val/maxW)*90)+2}px;opacity:${0.4+i*0.12}"></div>
+      <div style="font-size:10px;color:var(--muted)">${i+1}주</div>
+    </div>`).join('');
+}
+
+function renderAnnualReport() {
+  document.getElementById('monthly-report').style.display = 'none';
+  document.getElementById('annual-report').style.display = 'block';
+  document.getElementById('annual-report-title').textContent = `${currentDate.getFullYear()}년 연간 리포트`;
+
+  const yr = currentDate.getFullYear();
+  const allData = getYearData(yr);
+  const cats = getCategories();
+  const incomeKeys = new Set(cats.filter(c=>c.type==='income').map(c=>c.key));
+  const taxdedKeys = new Set(cats.filter(c=>c.type==='taxded').map(c=>c.key));
+
+  const expenses = allData.filter(t=>t.amount<0&&!incomeKeys.has(t.category));
+  const incomes  = allData.filter(t=>t.amount>0||incomeKeys.has(t.category));
+  const taxded   = allData.filter(t=>taxdedKeys.has(t.category));
+
+  const totalExp = expenses.reduce((s,t)=>s+Math.abs(t.amount),0);
+  const totalInc = incomes.reduce((s,t)=>s+Math.abs(t.amount),0);
+  const totalTax = taxded.reduce((s,t)=>s+Math.abs(t.amount),0);
+
+  document.getElementById('a-income').textContent=fmt(totalInc);
+  document.getElementById('a-expense').textContent=fmt(-totalExp);
+  document.getElementById('a-balance').textContent=fmt(totalInc-totalExp);
+  document.getElementById('a-taxded').textContent=fmt(totalTax);
+
+  // Monthly trend
+  const MONTHS=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  const monthExp=MONTHS.map((_,m)=>{
+    const d=getData(new Date(yr,m,1));
+    return d.filter(t=>t.amount<0&&!incomeKeys.has(t.category)).reduce((s,t)=>s+Math.abs(t.amount),0);
+  });
+  const maxM=Math.max(...monthExp,1);
+  document.getElementById('monthly-trend').innerHTML=monthExp.map((val,i)=>`
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div style="font-size:9px;color:var(--muted)">${val>0?'$'+Math.round(val):''}</div>
+      <div style="width:100%;background:var(--accent);border-radius:3px 3px 0 0;height:${Math.round((val/maxM)*110)+2}px;opacity:${val>0?0.7:0.2}"></div>
+      <div style="font-size:9px;color:var(--muted)">${MONTHS[i]}</div>
+    </div>`).join('');
+
+  // Annual cat chart
+  const bycat={};
+  expenses.forEach(t=>{bycat[t.category]=(bycat[t.category]||0)+Math.abs(t.amount);});
+  const sorted=Object.entries(bycat).sort((a,b)=>b[1]-a[1]);
+  document.getElementById('annual-cat-chart').innerHTML=sorted.length===0
+    ? '<div class="empty"><div class="empty-text">데이터 없음</div></div>'
+    : sorted.map(([key,val])=>{
+        const c=getCat(key); const pct=totalExp>0?(val/totalExp*100):0;
+        return `<div class="bar-row"><div class="bar-label">${c.label}</div><div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${c.color}"></div></div><div class="bar-amount">${fmt(-val)}</div></div>`;
+      }).join('');
+
+  // Tax deductible detail
+  const taxByCat={};
+  taxded.forEach(t=>{taxByCat[t.category]=(taxByCat[t.category]||0)+Math.abs(t.amount);});
+  const taxEntries=Object.entries(taxByCat);
+  document.getElementById('taxded-detail').innerHTML = taxEntries.length===0
+    ? '<div style="color:var(--muted);font-size:13px;padding:20px 0">세금공제 항목이 없어요. 설정에서 카테고리 타입을 "세금공제"로 지정하세요.</div>'
+    : `<table style="width:100%"><thead><tr><th>카테고리</th><th style="text-align:right">연간 합계</th><th style="text-align:right">월 평균</th></tr></thead><tbody>
+        ${taxEntries.map(([key,val])=>`
+          <tr><td>${getCat(key).label}</td>
+          <td style="text-align:right;color:#f0c060;font-weight:500">${fmt(val)}</td>
+          <td style="text-align:right;color:var(--muted)">${fmt(val/12)}</td></tr>`).join('')}
+        <tr style="border-top:1px solid var(--border)">
+          <td style="font-weight:500">합계</td>
+          <td style="text-align:right;color:#f0c060;font-weight:600">${fmt(totalTax)}</td>
+          <td style="text-align:right;color:var(--muted)">${fmt(totalTax/12)}</td>
+        </tr></tbody></table>`;
+}
+
+// ============================================================
+// SETTINGS
+// ============================================================
+function renderSettings() {
+  renderCatList();
+  renderBankList();
+}
+
+function renderCatList() {
+  const cats = getCategories();
+  document.getElementById('cat-list').innerHTML = cats.map((c,i) => `
+    <div class="cat-item">
+      <div class="cat-color-dot" style="background:${c.color}"></div>
+      <div class="cat-name">${c.label}</div>
+      <span class="cat-type-badge ${c.type==='income'?'type-income':c.type==='taxded'?'type-taxded':'type-expense'}">
+        ${c.type==='income'?'수입':c.type==='taxded'?'세금공제':'지출'}
+      </span>
+      ${i >= DEFAULT_CATS.length ? `<button class="btn btn-danger btn-sm" onclick="removeCat(${i})">삭제</button>` : '<span style="font-size:11px;color:var(--muted)">기본</span>'}
+    </div>`).join('');
+}
+
+function addCategory() {
+  const name = document.getElementById('new-cat-name').value.trim();
+  const type = document.getElementById('new-cat-type').value;
+  const color = document.getElementById('new-cat-color').value.trim() || '#a78bfa';
+  if (!name) { showToast('이름을 입력하세요', 'error'); return; }
+  const key = name.toLowerCase().replace(/\s+/g,'_') + '_' + Date.now();
+  const cats = getCategories();
+  cats.push({ key, label:name, color, type });
+  saveCategories(cats);
+  document.getElementById('new-cat-name').value = '';
+  renderCatList();
+  showToast(`✓ "${name}" 카테고리 추가됐어요!`);
+}
+
+function removeCat(i) {
+  const cats = getCategories();
+  if (!confirm(`"${cats[i].label}" 카테고리를 삭제할까요?`)) return;
+  cats.splice(i,1);
+  saveCategories(cats);
+  renderCatList();
+  showToast('카테고리 삭제됐어요');
+}
+
+function renderBankList() {
+  const banks = getBanks();
+  const defaultCount = DEFAULT_BANKS.length;
+  document.getElementById('bank-list').innerHTML = banks.map((b,i) => `
+    <div class="cat-item">
+      <div class="cat-name">${b.label}</div>
+      <span style="font-size:11px;color:var(--muted)">${b.format} 형식</span>
+      ${i >= defaultCount ? `<button class="btn btn-danger btn-sm" onclick="removeBank(${i})">삭제</button>` : '<span style="font-size:11px;color:var(--muted)">기본</span>'}
+    </div>`).join('');
+}
+
+function addBank() {
+  const name = document.getElementById('new-bank-name').value.trim();
+  const format = document.getElementById('new-bank-format').value;
+  if (!name) { showToast('이름을 입력하세요', 'error'); return; }
+  const key = name.toLowerCase().replace(/\s+/g,'_') + '_' + Date.now();
+  const banks = getBanks();
+  banks.push({ key, label:name, format });
+  saveBanks(banks);
+  document.getElementById('new-bank-name').value = '';
+  renderBankList();
+  renderBankTabs();
+  showToast(`✓ "${name}" 추가됐어요!`);
+}
+
+function removeBank(i) {
+  const banks = getBanks();
+  if (!confirm(`"${banks[i].label}"을 삭제할까요?`)) return;
+  banks.splice(i,1);
+  saveBanks(banks);
+  renderBankList();
+  renderBankTabs();
+  showToast('삭제됐어요');
+}
+
+// ============================================================
+// EXPORT
+// ============================================================
+function exportCSV() {
+  const data = currentView === 'annual' ? getYearData(currentDate.getFullYear()) : getData();
+  const label = currentView === 'annual' ? `${currentDate.getFullYear()}년` : getMonthLabel(currentDate);
+  let csv = `우리 가계부 - ${label}\n날짜,내용,은행,카테고리,누가,금액\n`;
+  data.sort((a,b)=>b.date.localeCompare(a.date)).forEach(t=>{
+    csv += `${t.date},"${t.description}",${t.bank||''},${getCat(t.category).label},${t.person},${t.amount}\n`;
+  });
+  downloadCSV(csv, `가계부_${currentView==='annual'?currentDate.getFullYear():getMonthKey(currentDate)}.csv`);
+}
+
+function exportAnnualCSV() {
+  const yr = currentDate.getFullYear();
+  const allData = getYearData(yr);
+  const cats = getCategories();
+  const taxdedKeys = new Set(cats.filter(c=>c.type==='taxded').map(c=>c.key));
+  const taxded = allData.filter(t=>taxdedKeys.has(t.category));
+  const total = taxded.reduce((s,t)=>s+Math.abs(t.amount),0);
+
+  let csv = `우리 가계부 - ${yr}년 세금공제 항목\n`;
+  csv += `날짜,내용,은행,카테고리,누가,금액\n`;
+  taxded.sort((a,b)=>b.date.localeCompare(a.date)).forEach(t=>{
+    csv += `${t.date},"${t.description}",${t.bank||''},${getCat(t.category).label},${t.person},${t.amount}\n`;
+  });
+  csv += `\n합계,,,,, ${total.toFixed(2)}\n`;
+  downloadCSV(csv, `가계부_${yr}년_세금공제.csv`);
+}
+
+function downloadCSV(csv, filename) {
+  const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url; a.download=filename; a.click();
+  showToast('✓ 내보내기 완료!');
+}
+
+function exportAllData() {
+  const all = {};
+  for (let i=0;i<localStorage.length;i++){
+    const k=localStorage.key(i); all[k]=localStorage.getItem(k);
+  }
+  const blob = new Blob([JSON.stringify(all,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download='가계부_백업.json'; a.click();
+  showToast('✓ 백업 완료!');
+}
+
+function clearAllData() {
+  if (!confirm('모든 데이터를 삭제할까요? 되돌릴 수 없어요.')) return;
+  const keep = ['categories','banks','budgets'];
+  const keys = [];
+  for (let i=0;i<localStorage.length;i++) keys.push(localStorage.key(i));
+  keys.filter(k=>k.startsWith('budget_')).forEach(k=>localStorage.removeItem(k));
+  refreshAll(); showToast('데이터 삭제됐어요');
+}
+
+// ============================================================
+// SAMPLE DATA
+// ============================================================
+function loadSampleData() {
+  const yr=currentDate.getFullYear(), mo=String(currentDate.getMonth()+1).padStart(2,'0');
+  const sample=[
+    {id:1,  date:`${yr}-${mo}-01`, description:'PAYROLL DIRECT DEPOSIT', bank:'Chase',        amount:4500,   category:'income',        person:'나'},
+    {id:2,  date:`${yr}-${mo}-01`, description:'PAYROLL DIRECT DEPOSIT', bank:'Bank of America', amount:3800, category:'income',       person:'와이프'},
+    {id:3,  date:`${yr}-${mo}-02`, description:'TRADER JOES #123',       bank:'Chase',        amount:-143.22,category:'grocery',        person:'나'},
+    {id:4,  date:`${yr}-${mo}-03`, description:'CHIPOTLE ONLINE ORDER',  bank:'Citi',         amount:-32.50, category:'dining',         person:'와이프'},
+    {id:5,  date:`${yr}-${mo}-05`, description:'SHELL GAS STATION',      bank:'Bank of America',amount:-68,  category:'transport',      person:'나'},
+    {id:6,  date:`${yr}-${mo}-07`, description:'NETFLIX.COM',            bank:'Citi',         amount:-22.99, category:'subscriptions',  person:'와이프'},
+    {id:7,  date:`${yr}-${mo}-08`, description:'AMAZON MARKETPLACE',     bank:'Chase',        amount:-89.99, category:'shopping',       person:'나'},
+    {id:8,  date:`${yr}-${mo}-10`, description:'CVS PHARMACY',           bank:'Wells Fargo',  amount:-45.60, category:'medical',        person:'와이프'},
+    {id:9,  date:`${yr}-${mo}-12`, description:'TARGET BABY SECTION',    bank:'Chase',        amount:-112.44,category:'baby',           person:'와이프'},
+    {id:10, date:`${yr}-${mo}-15`, description:'MORTGAGE PAYMENT',       bank:'Wells Fargo',  amount:-2100,  category:'housing',        person:'공동'},
+    {id:11, date:`${yr}-${mo}-16`, description:'CANVA PRO',              bank:'Chase',        amount:-14.99, category:'subscriptions',  person:'나'},
+    {id:12, date:`${yr}-${mo}-18`, description:'GRACE COMMUNITY CHURCH', bank:'Chase',        amount:-200,   category:'tithe',          person:'공동'},
+    {id:13, date:`${yr}-${mo}-20`, description:'DOORDASH ORDER',         bank:'Citi',         amount:-41.20, category:'dining',         person:'나'},
+    {id:14, date:`${yr}-${mo}-22`, description:'VANGUARD TRANSFER',      bank:'Chase',        amount:-500,   category:'savings',        person:'나'},
+    {id:15, date:`${yr}-${mo}-25`, description:'ELECTRIC BILL',          bank:'Wells Fargo',  amount:-180,   category:'housing',        person:'공동'},
+  ];
+  saveData(sample);
+  refreshAll();
+  showToast('✓ 샘플 데이터 로드 완료!');
+}
+
+// ============================================================
+// REFRESH
+// ============================================================
+function refreshAll() {
+  renderDashboard();
+  const activeTab = document.querySelector('.tab.active')?.dataset.tab;
+  if (activeTab==='transactions') renderTransactions();
+  if (activeTab==='report')       renderReport();
+  if (activeTab==='budget')       renderBudget();
+}
+
+// DRAG & DROP
+const ua = document.querySelector('.file-upload-area');
+if (ua) {
+  ua.addEventListener('dragover', e=>{e.preventDefault(); ua.style.borderColor='var(--accent)';});
+  ua.addEventListener('dragleave', ()=>{ua.style.borderColor='var(--border)';});
+  ua.addEventListener('drop', e=>{
+    e.preventDefault(); ua.style.borderColor='var(--border)';
+    const file=e.dataTransfer.files[0]; if(!file) return;
+    const r=new FileReader(); r.onload=ev=>{document.getElementById('csvText').value=ev.target.result;}; r.readAsText(file);
+  });
+}
+
+init();
+</script>
 </body>
 </html>
