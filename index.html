@@ -420,13 +420,9 @@
     <div style="font-size:13px;font-weight:500;margin-bottom:10px">새 은행 / 카드 추가</div>
     <div class="add-row">
       <input type="text" id="new-bank-name" placeholder="은행/카드 이름 (예: Amex Blue)" style="flex:1;min-width:160px">
-      <select id="new-bank-format">
-        <option value="chase">Chase 형식</option>
-        <option value="citi">Citi 형식</option>
-        <option value="bofa">BofA 형식</option>
-        <option value="wells">Wells Fargo 형식</option>
-        <option value="amex">Amex 형식</option>
-        <option value="generic">기타 (자동감지)</option>
+      <select id="new-bank-noheader">
+        <option value="false">헤더 있음 (일반)</option>
+        <option value="true">헤더 없음 (Wells Fargo 스타일)</option>
       </select>
       <button class="btn btn-primary btn-sm" onclick="addBank()">추가</button>
     </div>
@@ -468,12 +464,12 @@ const DEFAULT_CATS = [
 ];
 
 const DEFAULT_BANKS = [
-  { key:'chase',   label:'Chase',        format:'chase'   },
-  { key:'citi',    label:'Citi',         format:'citi'    },
-  { key:'bofa',    label:'Bank of America', format:'bofa' },
-  { key:'wells',   label:'Wells Fargo',  format:'wells'   },
-  { key:'amex',    label:'Amex',         format:'amex'    },
-  { key:'capital', label:'Capital One',  format:'generic' },
+  { key:'chase_checking', label:'Chase Checking',      format:'auto', noHeader:false },
+  { key:'chase_cc',       label:'Chase Credit Card',   format:'auto', noHeader:false },
+  { key:'citi',           label:'Citi',                format:'auto', noHeader:false },
+  { key:'wells',          label:'Wells Fargo',         format:'auto', noHeader:true  },
+  { key:'amex',           label:'Amex',                format:'auto', noHeader:false },
+  { key:'capital',        label:'Capital One',         format:'auto', noHeader:false },
 ];
 
 // ============================================================
@@ -850,45 +846,88 @@ function normalizeDate(str) {
 }
 
 function makeTx(date, desc, bank, amount) {
-  return { id: Date.now() + Math.random(), date: normalizeDate(date), description: (desc||'').replace(/"/g,''), bank, amount: parseFloat(amount)||0, category: smartCategory(desc||''), person: currentPerson };
+  return { id: Date.now() + Math.random(), date: normalizeDate(date), description: (desc||'').replace(/"/g,'').trim(), bank, amount: parseFloat(amount)||0, category: smartCategory(desc||''), person: currentPerson };
 }
 
-const PARSERS = {
-  // Chase: Date,PostDate,Desc,Category,Type,Amount,Memo
-  chase: cols => cols.length >= 6 ? makeTx(cols[0],cols[2],'Chase',cols[5]) : null,
-  // Citi: Status,Date,Desc,Debit,Credit
-  citi: cols => {
-    if (cols.length < 4) return null;
-    const debit = parseFloat(cols[3])||0, credit = parseFloat(cols[4])||0;
-    return makeTx(cols[1], cols[2], 'Citi', credit>0?credit:-debit);
-  },
-  // BofA: Date,Desc,Amount,RunningBal
-  bofa: cols => cols.length >= 3 ? makeTx(cols[0],cols[1],'Bank of America',cols[2]) : null,
-  // Wells: Date,Amount,*,*,Desc
-  wells: cols => cols.length >= 5 ? makeTx(cols[0],cols[4],'Wells Fargo',cols[1]) : null,
-  // Amex: Date,Ref,Amount,Desc  (amount positive = charge)
-  amex: cols => cols.length >= 4 ? makeTx(cols[0],cols[3],'Amex',-Math.abs(parseFloat(cols[2])||0)) : null,
-  generic: cols => {
-    if (cols.length < 3) return null;
-    const amt = parseFloat(cols[cols.length-1]) || parseFloat(cols[2]);
-    return makeTx(cols[0], cols[1], 'Other', amt);
-  },
-};
+// Header-based auto detection
+// Returns {dateIdx, descIdx, amountIdx, creditIdx, debitIdx, skipHeader}
+function detectFormat(headerLine) {
+  const cols = splitCSVLine(headerLine).map(c => c.toLowerCase().replace(/"/g,'').trim());
+  const idx = (keywords) => cols.findIndex(c => keywords.some(k => c.includes(k)));
 
-function getBankFormat(key) {
+  const dateIdx   = idx(['posting date','transaction date','date']);
+  const descIdx   = idx(['description','memo','payee','name']);
+  const amountIdx = idx(['amount']);
+  const debitIdx  = idx(['debit']);
+  const creditIdx = idx(['credit']);
+
+  return { dateIdx, descIdx, amountIdx, debitIdx, creditIdx };
+}
+
+function parseWithFormat(cols, fmt, bankLabel) {
+  const { dateIdx, descIdx, amountIdx, debitIdx, creditIdx } = fmt;
+  if (dateIdx < 0 || descIdx < 0) return null;
+
+  const date = cols[dateIdx];
+  const desc = cols[descIdx];
+
+  let amount = 0;
+  if (amountIdx >= 0 && cols[amountIdx] !== undefined && cols[amountIdx] !== '') {
+    amount = parseFloat(cols[amountIdx].replace(/[^0-9.\-]/g,'')) || 0;
+  } else if (debitIdx >= 0 || creditIdx >= 0) {
+    // Citi style: separate debit/credit columns
+    const debit  = debitIdx  >= 0 ? parseFloat(cols[debitIdx] .replace(/[^0-9.]/g,'')) || 0 : 0;
+    const credit = creditIdx >= 0 ? parseFloat(cols[creditIdx].replace(/[^0-9.]/g,'')) || 0 : 0;
+    amount = credit > 0 ? credit : -debit;
+  }
+
+  if (!date || !desc || isNaN(amount) || amount === 0) return null;
+  return makeTx(date, desc, bankLabel, amount);
+}
+
+// Wells Fargo has NO header — fixed column order:
+// Date, Amount, *, *, Description
+function parseWellsNoHeader(cols) {
+  if (cols.length < 5) return null;
+  return makeTx(cols[0], cols[4], 'Wells Fargo', cols[1]);
+}
+
+function getBankLabel(key) {
   const banks = getBanks();
   const b = banks.find(x => x.key === key);
-  return b ? b.format : 'generic';
+  return b ? b.label : 'Other';
+}
+
+function getBankIsNoHeader(key) {
+  const banks = getBanks();
+  const b = banks.find(x => x.key === key);
+  return b ? !!b.noHeader : false;
 }
 
 function parseCSV(text) {
-  const lines = text.trim().split('\n').map(l=>l.trim()).filter(Boolean);
+  const lines = text.trim().split('\n').map(l => l.trim()).filter(Boolean);
+  if (!lines.length) return [];
+
+  const bankLabel = getBankLabel(currentBank);
+  const noHeader  = getBankIsNoHeader(currentBank);
+
+  // Wells Fargo: no header, parse from line 0
+  if (noHeader) {
+    return lines.map(l => {
+      try { return parseWellsNoHeader(splitCSVLine(l)); } catch(e) { return null; }
+    }).filter(tx => tx && !isNaN(tx.amount) && tx.amount !== 0);
+  }
+
+  // All other banks: first line is header
   if (lines.length < 2) return [];
-  const format = getBankFormat(currentBank);
-  const parser = PARSERS[format] || PARSERS.generic;
+  const fmt = detectFormat(lines[0]);
   const results = [];
   for (let i = 1; i < lines.length; i++) {
-    try { const tx = parser(splitCSVLine(lines[i])); if (tx && !isNaN(tx.amount) && tx.amount !== 0) results.push(tx); } catch(e) {}
+    try {
+      const cols = splitCSVLine(lines[i]);
+      const tx = parseWithFormat(cols, fmt, bankLabel);
+      if (tx) results.push(tx);
+    } catch(e) {}
   }
   return results;
 }
@@ -1188,18 +1227,18 @@ function renderBankList() {
   document.getElementById('bank-list').innerHTML = banks.map((b,i) => `
     <div class="cat-item">
       <div class="cat-name">${b.label}</div>
-      <span style="font-size:11px;color:var(--muted)">${b.format} 형식</span>
+      <span style="font-size:11px;color:var(--muted)">${b.noHeader ? '헤더 없음' : '헤더 자동감지'}</span>
       ${i >= defaultCount ? `<button class="btn btn-danger btn-sm" onclick="removeBank(${i})">삭제</button>` : '<span style="font-size:11px;color:var(--muted)">기본</span>'}
     </div>`).join('');
 }
 
 function addBank() {
   const name = document.getElementById('new-bank-name').value.trim();
-  const format = document.getElementById('new-bank-format').value;
+  const noHeader = document.getElementById('new-bank-noheader').value === 'true';
   if (!name) { showToast('이름을 입력하세요', 'error'); return; }
   const key = name.toLowerCase().replace(/\s+/g,'_') + '_' + Date.now();
   const banks = getBanks();
-  banks.push({ key, label:name, format });
+  banks.push({ key, label:name, format:'auto', noHeader });
   saveBanks(banks);
   document.getElementById('new-bank-name').value = '';
   renderBankList();
