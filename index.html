@@ -1224,13 +1224,19 @@ function renderTransactions() {
     });
   }
   const bankSel = document.getElementById('f-bank');
-  const banks = [...new Set(data.map(t => t.bank).filter(Boolean))];
+  const prevBankVal = bankSel.value; // save current selection before rebuild
+  const banks = [...new Set(data.map(t => t.bank).filter(Boolean))].sort();
   bankSel.innerHTML = '<option value="">전체 은행</option>';
-  banks.forEach(b => { const o = document.createElement('option'); o.value=b; o.textContent=b; bankSel.appendChild(o); });
+  banks.forEach(b => {
+    const o = document.createElement('option');
+    o.value = b; o.textContent = b;
+    if (b === prevBankVal) o.selected = true; // restore selection
+    bankSel.appendChild(o);
+  });
 
   const catF = document.getElementById('f-cat').value;
   const personF = document.getElementById('f-person').value;
-  const bankF = document.getElementById('f-bank').value;
+  const bankF = bankSel.value; // read AFTER rebuild
   const search = document.getElementById('f-search').value.toLowerCase();
 
   let filtered = data.filter(tx => {
